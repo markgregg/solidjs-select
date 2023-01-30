@@ -1,0 +1,23 @@
+{
+  "name": "solidjs-select",
+  "private": true,
+  "description": "Select control for solid-js",
+  "keywords": [],
+  "author": "Mark Gregg <gregg.mark@gmail.com> (https://github.com/markgregg)",
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "publish": "cd packages/solidjs-select && npm run build && npm publish",
+    "start-local": "cd examples/solidjs-select && npm run prepare && npm run start",
+    "start-live": "cd examples/solidjs-select && npm install solidjs-select@latest && npm run start",
+    "deploy": "cd examples/solidjs-select && npm run deploy",
+    "install": "cd packages/solidjs-select && npm install && cd ../../examples/solidjs-select && npm install"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

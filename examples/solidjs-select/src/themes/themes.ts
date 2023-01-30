@@ -1,0 +1,251 @@
+export enum Themes {
+  None = 'None',
+  Dark = 'Dark',
+  Light = 'Light',
+  Blue = 'Blue',
+}
+
+export const themes = Object.keys(Themes).filter((item) => {
+  return isNaN(Number(item));
+});
+
+export const applyTheme = (theme: string) => {
+  switch (theme) {
+    case Themes.Blue:
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBackgroundColor',
+        '#353576'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFontColor',
+        'White'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFonHighlightColor',
+        'LightGray'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectDisabledBackgroundColor',
+        '#5555ad'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipBackgroundColor',
+        '#5555ad'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectHighlightedBackgroundColor',
+        '#9c9ccb'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectSelectedBackgroundBackgroundColor',
+        '#7676b0'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBorder',
+        'none'
+      );
+      document.documentElement.style.setProperty(
+        '--pageColor1',
+        'rgb(195, 212, 233)'
+      );
+      document.documentElement.style.setProperty('--pageColor2', '#353576');
+      document.documentElement.style.setProperty('--pageColor3', '#9c9ccb');
+      document.documentElement.style.setProperty('--pageFont', 'Black');
+      document.documentElement.style.setProperty('--scrollbarColor', '#9c9ccb');
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowColor',
+        '#353576'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverColor',
+        '#353576'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverBackground',
+        '#5555ad'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbColor',
+        '#353576'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbHoverColor',
+        '#5555ad'
+      );
+      break;
+    case Themes.Dark:
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBackgroundColor',
+        '#511281'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFontColor',
+        'rgb(225, 225, 225)'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFonHighlightColor',
+        'DarkGray'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectDisabledBackgroundColor',
+        '#512E6B'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipBackgroundColor',
+        '#512E6B'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectHighlightedBackgroundColor',
+        '#9C2BF1'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectSelectedBackgroundBackgroundColor',
+        '#823bb8'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBorder',
+        'none'
+      );
+      document.documentElement.style.setProperty(
+        '--pageColor1',
+        'rgb(43, 28, 47)'
+      );
+      document.documentElement.style.setProperty('--pageColor2', '#511281');
+      document.documentElement.style.setProperty('--pageColor3', ' #9C2BF1');
+      document.documentElement.style.setProperty(
+        '--pageFont',
+        'rgb(225, 225, 225)'
+      );
+      document.documentElement.style.setProperty('--scrollbarColor', '#9C2BF1');
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowColor',
+        '#512E6B'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverColor',
+        '#512E6B'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverBackground',
+        '#6b3495'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbColor',
+        '#512E6B'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbHoverColor',
+        '#6b3495'
+      );
+      break;
+    case Themes.Light:
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBackgroundColor',
+        '#E7C504'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFontColor',
+        '#3D350B'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFonHighlightColor',
+        'DarkGray'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectDisabledBackgroundColor',
+        '#d5b70e'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipBackgroundColor',
+        '#d5b70e'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectHighlightedBackgroundColor',
+        '#FCE355'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectSelectedBackgroundBackgroundColor',
+        '#eadb85'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBorder',
+        'none'
+      );
+      document.documentElement.style.setProperty('--pageColor1', '#FEF4B9');
+      document.documentElement.style.setProperty('--pageColor2', '#E7C504');
+      document.documentElement.style.setProperty('--pageColor3', '#FCE355');
+      document.documentElement.style.setProperty('--pageFont', '#3D350B');
+      document.documentElement.style.setProperty('--scrollbarColor', '#FCE355');
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowColor',
+        '#d5b70e'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverColor',
+        '#d5b70e'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverBackground',
+        '#e0cd60'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbColor',
+        '#d5b70e'
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbHoverColor',
+        '#e0cd60'
+      );
+      break;
+    case Themes.None:
+      document.documentElement.style.setProperty(
+        '--solidjsSelectBackgroundColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFontColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectFonHighlightColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectDisabledBackgroundColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipBackgroundColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectHighlightedBackgroundColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectSelectedBackgroundBackgroundColor',
+        null
+      );
+      document.documentElement.style.setProperty('--solidjsSelectBorder', null);
+      document.documentElement.style.setProperty('--pageColor1', 'White');
+      document.documentElement.style.setProperty('--pageColor2', '#CEE538');
+      document.documentElement.style.setProperty('--pageColor3', '#849513');
+      document.documentElement.style.setProperty('--pageFont', 'Black');
+      document.documentElement.style.setProperty('--scrollbarColor', null);
+      document.documentElement.style.setProperty('--scrollbarArrowColor', null);
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--scrollbarArrowHoverBackground',
+        null
+      );
+      document.documentElement.style.setProperty('--scrollbarThumbColor', null);
+      document.documentElement.style.setProperty(
+        '--scrollbarThumbHoverColor',
+        null
+      );
+      break;
+  }
+};

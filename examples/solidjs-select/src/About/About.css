@@ -1,0 +1,20 @@
+.about {
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: var(--pageFont);
+}
+
+.bullet {
+  font-size: xx-large;
+  margin-right: 5px;
+}
+
+.indent {
+  margin-left: 40px;
+  margin-right: 10px;
+}
