@@ -2,7 +2,7 @@
 
 SolidJsSelect is a solidjs, highly functional select control
 
-For examples and help [solidjs-select](https://markgregg.github.io/CompactSelect/)
+For examples and help [solidjs-select](https://markgregg.github.io/SolidJsSelect/)
 
 ## To install
 
@@ -14,7 +14,7 @@ npm i --save solidjs-select
 
 A simple string list
 ```js
-<CompactSelect
+<SolidJsSelect
   title="test"
   choices={choices}
 />

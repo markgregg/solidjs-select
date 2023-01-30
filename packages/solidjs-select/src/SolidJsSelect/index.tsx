@@ -277,7 +277,6 @@ const SolidJsSelect = <T extends object | string>(
                     'var(--solidjsSelectClearSelectionIconSize, small)',
                   'align-content': 'center',
                   display: 'flex',
-                  'margin-right': '3px',
                   color: 'var(--solidjsSelectFontColor, black)',
                   ...props.clearSelectionStyle,
                   ...clearSelectionStateStyle(
@@ -321,6 +320,7 @@ const SolidJsSelect = <T extends object | string>(
                       : props.inputClassName
                   }
                   style={{
+                    'margin-left': '3px',
                     'background-color': 'transparent',
                     border: 'none',
                     'max-width': 'var(--solidjsSelectInputTextMaxWidth,100%)',

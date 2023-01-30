@@ -1,34 +1,179 @@
-## Usage
+# SolidJsSelect
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+SolidJsSelect is a solidjs, highly functional select control
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+For examples and help [solidjs-select](https://markgregg.github.io/SolidJsSelect/)
 
-```bash
-$ npm install # or pnpm install or yarn install
+## To install
+
+yarn add solidjs-select
+
+npm i --save solidjs-select
+
+## Quick start
+
+A simple string list
+```js
+<SolidJsSelect
+  title="test"
+  choices={choices}
+/>
+```
+## Behaviour properties
+
+- title - select control title and use as a key for caching items
+- maximumSelections - min items that can be selected
+- minimumSelections - max items that can be selected
+- selectType - how the control behaves "standard" | "dropdown" | "switch"
+- choices - available static choices
+- selected - currently selected items
+- itemValue - if using a complex class how to access the key value
+- itemText - if using a complex class how to access the display value
+- itemDisabled - if using a complex class how to access the disabled value
+- typeAheadLookUp - type ahead lookup callback
+- noEmptyStringLookUp - don't loook up if the input string is blank
+- itemSearch? - item search for when pasting from the clipboard
+- cacheLookUp - should the control cache items
+- cacheTimeToLive - how long should items exist for, in seconds
+- cacheExpiryCheck - how often should item expiry be checked, in seconds
+- onChange - notify of change
+- disabled - is control disable
+- loadingText - custom loading text
+- noItemText - custom no item text
+- caseSensitive - perform case sensitive matching
+- toolTipValueLimit - maxium number of items to display in the tooltip
+
+## Apperance properties
+
+### solidjs select
+- style
+- selectStyle
+- selectDisabledStyle
+- className
+- disabledClassName
+- inputStyle
+- inputDisabledStyle
+- inputClassName
+- inputDisabledClassName
+- clearSelectionStyle
+- clearSelectionDisabledStyle
+- clearSelectionClassName
+- clearSelectionDisabledClassName
+- titleStyle
+- titleDisabledStyle
+- titleClassName
+- titleDisabledClassName
+- choiceListStyle
+- choiceListClassName
+- dropdownIconStyle
+- dropdownIconDisabledStyle
+- dropIconClassName
+- dropIconDisabledClassName
+- hideDropdownIcon
+- dropdownIcon
+- clearSelectionIcon
+- hideTitle
+- height
+- minHeight
+- maxHeight
+- width
+- minWidth
+- maxWidth
+
+### options
+- choiceStyle
+- choiceSelectedStyle
+- choiceHoverStyle
+- choiceDisabledStyle
+- choiceClassName
+- choiceSelectedClassName
+- choiceDisabledClassName
+- choiceHoverClassName
+- choiceSelectedIconStyle
+- choiceSelectedIconClassName
+- choiceSelectedIcon
+- hideSelectedIcon
+
+### item display
+- displayStyle
+- displayDisabledStyle
+- displayClassName
+- displayDisabledClassName
+
+### Tool tip
+- toolTipClassName
+- toolTipStyle
+- toolTipPosition    'above' | 'below' | 'left' | 'right';
+
+## Styling
+Add any of the below vairbales to a css/scss file.
+
+```css
+:root {
+  --solidjsSelectBackgroundColor: #14061F;
+  --solidjsSelectFontColor: White;
+  --solidjsSelectDisabledBackgroundColor: #353576;
+  --solidjsSelectToolTipBackgroundColor: #5555ad;
+  --solidjsSelectHighlightedBackgroundColor: #9c9ccb;
+  --solidjsSelectBorder: WhiteSmoke solid 2px;
+  --pageColor1: rgb(195, 212, 233);
+  --pageColor2: #353576;
+  --pageColor3: #9c9ccb;
+  --pageFont: Black;
+}
 ```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+### General
+- --solidjsSelectFontWeight
+- --solidjsSelectFontFamily
+- --solidjsSelectFontSize
+- --solidjsSelectFontStyle
+- --solidjsSelectFontColor    (default black)
+- --solidjsSelectBorder   (default 2px solid WhiteSmoke)
+- --solidjsSelectBackgroundColor
+- --solidjsSelectBackgroundImage
+- --solidjsSelectDisabledBackgroundColor
+- --solidjsSelectDisabledBackgroundImage
 
-## Available Scripts
+### Input box
+- --solidjsSelectInputTextMaxWidth (default 100%)
 
-In the project directory, you can run:
+### Title 
+- --solidjsSelectTitleFontSize  (default small)
 
-### `npm dev` or `npm start`
+### Option list
+- --solidjsSelectChoiceListMaxHeight (default 300)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Clear seletion icon
+- --solidjsSelectClearSelectionIconSize  (default large)
 
-The page will reload if you make edits.<br>
+### Options
+- --solidjsSelectChoiceSelectedIndicatorBorder
+- --solidjsSelectSelectedFontColor  (default black)
+- --solidjsSelectSelectedBackgroundColor
+- --solidjsSelectHighlightedFontColor   (default black)
+- --solidjsSelectHighlightedBackgroundColor  (default lightgray)
+- --solidjsSelectDisabledFontColor  (default darkgray)
+- --solidjsSelectDisabledBackgroundColor   (default Gainsboro)
+- --solidjsSelectSelectedIconSize  (default large)
+- --solidjsSelectSelectedIconColor  (default green)
+- --solidjsSelectChoiceBackgroundImage
+- --solidjsSelectSelectedBackgroundImage
+- --solidjsSelectHighlightedBackgroundImage
+- --solidjsSelectDisabledBackgroundImage
 
-### `npm run build`
+### Tool tip
+- --solidjsSelectToolTipFontColor   (default black)
+- --solidjsSelectToolTipFontWeight
+- --solidjsSelectFontFamily
+- --solidjsSelectToolTipFontSize (default small)
+- --solidjsSelectToolTipFontStyle
+- --solidjsSelectToolTipTextAlign  (default center)
+- --solidjsSelectToolTipBorder
+- --solidjsSelectToolTipBackgroundColor
+- --solidjsSelectToolTipBackgroundImage
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+## Components
+- toolTipComponent
+- choiceComponent
+- displayComponent

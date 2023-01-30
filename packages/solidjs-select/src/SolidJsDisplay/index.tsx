@@ -26,6 +26,7 @@ const SolidJsDisplay = <T extends object | string>(
         props.disabled ? props.displayDisabledClassName : props.displayClassName
       }
       style={{
+        'margin-left': '3px',
         'margin-block-start': '0px',
         'margin-block-end': '0px',
         '-moz-user-select': 'none',

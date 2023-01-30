@@ -1,23 +1,24 @@
-# CompactSelect
+# SolidJsSelect
 
-CompactSelect is a select control that is light in terms of screen realestate but at the same time highly functional
+SolidJsSelect is a solidjs, highly functional select control
 
-For examples and help [compact-select](https://markgregg.github.io/CompactSelect/)
+For examples and help [solidjs-select](https://markgregg.github.io/SolidJsSelect/)
 
 ## To install
 
-yarn add compact-select
+yarn add solidjs-select
 
-npm i --save compact-select
+npm i --save solidjs-select
 
 ## Quick start
 
 A simple string list
-
 ```js
-<CompactSelect title="test" choices={choices} />
+<SolidJsSelect
+  title="test"
+  choices={choices}
+/>
 ```
-
 ## Behaviour properties
 
 - title - select control title and use as a key for caching items
@@ -44,8 +45,7 @@ A simple string list
 
 ## Apperance properties
 
-### compact select
-
+### solidjs select
 - style
 - selectStyle
 - selectDisabledStyle
@@ -81,7 +81,6 @@ A simple string list
 - maxWidth
 
 ### options
-
 - choiceStyle
 - choiceSelectedStyle
 - choiceHoverStyle
@@ -96,30 +95,27 @@ A simple string list
 - hideSelectedIcon
 
 ### item display
-
 - displayStyle
 - displayDisabledStyle
 - displayClassName
 - displayDisabledClassName
 
 ### Tool tip
-
 - toolTipClassName
 - toolTipStyle
-- toolTipPosition 'above' | 'below' | 'left' | 'right';
+- toolTipPosition    'above' | 'below' | 'left' | 'right';
 
 ## Styling
-
 Add any of the below vairbales to a css/scss file.
 
 ```css
 :root {
-  --compactSelectBackgroundColor: #14061f;
-  --compactSelectFontColor: White;
-  --compactSelectDisabledBackgroundColor: #353576;
-  --compactSelectToolTipBackgroundColor: #5555ad;
-  --compactSelectHighlightedBackgroundColor: #9c9ccb;
-  --compactSelectBorder: WhiteSmoke solid 2px;
+  --solidjsSelectBackgroundColor: #14061F;
+  --solidjsSelectFontColor: White;
+  --solidjsSelectDisabledBackgroundColor: #353576;
+  --solidjsSelectToolTipBackgroundColor: #5555ad;
+  --solidjsSelectHighlightedBackgroundColor: #9c9ccb;
+  --solidjsSelectBorder: WhiteSmoke solid 2px;
   --pageColor1: rgb(195, 212, 233);
   --pageColor2: #353576;
   --pageColor3: #9c9ccb;
@@ -128,66 +124,56 @@ Add any of the below vairbales to a css/scss file.
 ```
 
 ### General
-
-- --compactSelectFontWeight
-- --compactSelectFontFamily
-- --compactSelectFontSize
-- --compactSelectFontStyle
-- --compactSelectFontColor (default black)
-- --compactSelectBorder (default 2px solid WhiteSmoke)
-- --compactSelectBackgroundColor
-- --compactSelectBackgroundImage
-- --compactSelectDisabledBackgroundColor
-- --compactSelectDisabledBackgroundImage
-- --compactSelectTitleFontWeight (default 100)
-- --compactSelectSelectedItemFontWeight (default bold)
+- --solidjsSelectFontWeight
+- --solidjsSelectFontFamily
+- --solidjsSelectFontSize
+- --solidjsSelectFontStyle
+- --solidjsSelectFontColor    (default black)
+- --solidjsSelectBorder   (default 2px solid WhiteSmoke)
+- --solidjsSelectBackgroundColor
+- --solidjsSelectBackgroundImage
+- --solidjsSelectDisabledBackgroundColor
+- --solidjsSelectDisabledBackgroundImage
 
 ### Input box
+- --solidjsSelectInputTextMaxWidth (default 100%)
 
-- --compactSelectInputTextMaxWidth (default 100%)
-
-### Title
-
-- --compactSelectTitleFontSize (default small)
+### Title 
+- --solidjsSelectTitleFontSize  (default small)
 
 ### Option list
-
-- --compactSelectChoiceListMaxHeight (default 300)
+- --solidjsSelectChoiceListMaxHeight (default 300)
 
 ### Clear seletion icon
-
-- --compactSelectClearSelectionIconSize (default large)
+- --solidjsSelectClearSelectionIconSize  (default large)
 
 ### Options
-
-- --compactSelectChoiceSelectedIndicatorBorder
-- --compactSelectSelectedFontColor (default black)
-- --compactSelectSelectedBackgroundColor
-- --compactSelectHighlightedFontColor (default black)
-- --compactSelectHighlightedBackgroundColor (default lightgray)
-- --compactSelectDisabledFontColor (default darkgray)
-- --compactSelectDisabledBackgroundColor (default Gainsboro)
-- --compactSelectSelectedIconSize (default large)
-- --compactSelectSelectedIconColor (default green)
-- --compactSelectChoiceBackgroundImage
-- --compactSelectSelectedBackgroundImage
-- --compactSelectHighlightedBackgroundImage
-- --compactSelectDisabledBackgroundImage
+- --solidjsSelectChoiceSelectedIndicatorBorder
+- --solidjsSelectSelectedFontColor  (default black)
+- --solidjsSelectSelectedBackgroundColor
+- --solidjsSelectHighlightedFontColor   (default black)
+- --solidjsSelectHighlightedBackgroundColor  (default lightgray)
+- --solidjsSelectDisabledFontColor  (default darkgray)
+- --solidjsSelectDisabledBackgroundColor   (default Gainsboro)
+- --solidjsSelectSelectedIconSize  (default large)
+- --solidjsSelectSelectedIconColor  (default green)
+- --solidjsSelectChoiceBackgroundImage
+- --solidjsSelectSelectedBackgroundImage
+- --solidjsSelectHighlightedBackgroundImage
+- --solidjsSelectDisabledBackgroundImage
 
 ### Tool tip
-
-- --compactSelectToolTipFontColor (default black)
-- --compactSelectToolTipFontWeight
-- --compactSelectFontFamily
-- --compactSelectToolTipFontSize (default small)
-- --compactSelectToolTipFontStyle
-- --compactSelectToolTipTextAlign (default center)
-- --compactSelectToolTipBorder
-- --compactSelectToolTipBackgroundColor
-- --compactSelectToolTipBackgroundImage
+- --solidjsSelectToolTipFontColor   (default black)
+- --solidjsSelectToolTipFontWeight
+- --solidjsSelectFontFamily
+- --solidjsSelectToolTipFontSize (default small)
+- --solidjsSelectToolTipFontStyle
+- --solidjsSelectToolTipTextAlign  (default center)
+- --solidjsSelectToolTipBorder
+- --solidjsSelectToolTipBackgroundColor
+- --solidjsSelectToolTipBackgroundImage
 
 ## Components
-
 - toolTipComponent
 - choiceComponent
 - displayComponent

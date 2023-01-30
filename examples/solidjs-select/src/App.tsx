@@ -28,10 +28,9 @@ const App = () => {
       <div class="page">
         <div class="body">
           <div class="header">
-            <h1 class="title">Compact Select</h1>
+            <h1 class="title">SolidJsSelect</h1>
             <p class="statement">
-              A simple, flexible select control that's economical in terms of
-              realestate
+              A compact, highly function select control
             </p>
           </div>
           <div class="menu-bar">

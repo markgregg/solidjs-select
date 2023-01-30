@@ -1,5 +1,4 @@
-export enum Themes {
-  None = 'None',
+export enum Themes {   None = 'None',
   Dark = 'Dark',
   Light = 'Light',
   Blue = 'Blue',
@@ -14,7 +13,7 @@ export const applyTheme = (theme: string) => {
     case Themes.Blue:
       document.documentElement.style.setProperty(
         '--solidjsSelectBackgroundColor',
-        '#353576'
+        '#4444B1'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFontColor',
@@ -45,20 +44,24 @@ export const applyTheme = (theme: string) => {
         'none'
       );
       document.documentElement.style.setProperty(
+        '--solidjsSelectBorder',
+        'none'
+      );
+      document.documentElement.style.setProperty(
         '--pageColor1',
         'rgb(195, 212, 233)'
       );
-      document.documentElement.style.setProperty('--pageColor2', '#353576');
+      document.documentElement.style.setProperty('--pageColor2', '#4444B1');
       document.documentElement.style.setProperty('--pageColor3', '#9c9ccb');
       document.documentElement.style.setProperty('--pageFont', 'Black');
       document.documentElement.style.setProperty('--scrollbarColor', '#9c9ccb');
       document.documentElement.style.setProperty(
         '--scrollbarArrowColor',
-        '#353576'
+        '#4444B1'
       );
       document.documentElement.style.setProperty(
         '--scrollbarArrowHoverColor',
-        '#353576'
+        '#4444B1'
       );
       document.documentElement.style.setProperty(
         '--scrollbarArrowHoverBackground',
@@ -66,7 +69,7 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--scrollbarThumbColor',
-        '#353576'
+        '#4444B1'
       );
       document.documentElement.style.setProperty(
         '--scrollbarThumbHoverColor',
@@ -76,11 +79,11 @@ export const applyTheme = (theme: string) => {
     case Themes.Dark:
       document.documentElement.style.setProperty(
         '--solidjsSelectBackgroundColor',
-        '#511281'
+        '#681CA1'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFontColor',
-        'rgb(225, 225, 225)'
+        '#dddddd'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFonHighlightColor',
@@ -104,17 +107,17 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectBorder',
-        'none'
+        '#441468 2px Solid'
       );
       document.documentElement.style.setProperty(
         '--pageColor1',
-        'rgb(43, 28, 47)'
+        'black'
       );
-      document.documentElement.style.setProperty('--pageColor2', '#511281');
+      document.documentElement.style.setProperty('--pageColor2', '#681CA1');
       document.documentElement.style.setProperty('--pageColor3', ' #9C2BF1');
       document.documentElement.style.setProperty(
         '--pageFont',
-        'rgb(225, 225, 225)'
+        '#eeeeee'
       );
       document.documentElement.style.setProperty('--scrollbarColor', '#9C2BF1');
       document.documentElement.style.setProperty(
@@ -141,7 +144,7 @@ export const applyTheme = (theme: string) => {
     case Themes.Light:
       document.documentElement.style.setProperty(
         '--solidjsSelectBackgroundColor',
-        '#E7C504'
+        '#F7E575'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFontColor',
@@ -153,7 +156,7 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectDisabledBackgroundColor',
-        '#d5b70e'
+        '#edde87'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectToolTipBackgroundColor',
@@ -161,21 +164,21 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectHighlightedBackgroundColor',
-        '#FCE355'
+        '#EFD233'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectSelectedBackgroundBackgroundColor',
         '#eadb85'
       );
       document.documentElement.style.setProperty(
-        '--solidjsSelectBorder',
-        'none'
+        '--solidjsSelectBorder', 
+        '#EFD233 2px Solid'
       );
-      document.documentElement.style.setProperty('--pageColor1', '#FEF4B9');
-      document.documentElement.style.setProperty('--pageColor2', '#E7C504');
-      document.documentElement.style.setProperty('--pageColor3', '#FCE355');
+      document.documentElement.style.setProperty('--pageColor1', '#FFFADB');
+      document.documentElement.style.setProperty('--pageColor2', '#F7E575');
+      document.documentElement.style.setProperty('--pageColor3', '#EFD233');
       document.documentElement.style.setProperty('--pageFont', '#3D350B');
-      document.documentElement.style.setProperty('--scrollbarColor', '#FCE355');
+      document.documentElement.style.setProperty('--scrollbarColor', '#EFD233');
       document.documentElement.style.setProperty(
         '--scrollbarArrowColor',
         '#d5b70e'
@@ -228,8 +231,8 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty('--solidjsSelectBorder', null);
       document.documentElement.style.setProperty('--pageColor1', 'White');
-      document.documentElement.style.setProperty('--pageColor2', '#CEE538');
-      document.documentElement.style.setProperty('--pageColor3', '#849513');
+      document.documentElement.style.setProperty('--pageColor2', '#dce916');
+      document.documentElement.style.setProperty('--pageColor3', '#eaff5c');
       document.documentElement.style.setProperty('--pageFont', 'Black');
       document.documentElement.style.setProperty('--scrollbarColor', null);
       document.documentElement.style.setProperty('--scrollbarArrowColor', null);
@@ -249,3 +252,6 @@ export const applyTheme = (theme: string) => {
       break;
   }
 };
+
+
+
