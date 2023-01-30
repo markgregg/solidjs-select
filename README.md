@@ -2,7 +2,7 @@
 
 SolidJsSelect is a solidjs, highly functional select control
 
-For examples and help [solidjs-select](https://markgregg.github.io/SolidJsSelect/)
+For examples and help [solidjs-select](https://markgregg.github.io/solidjs-select/)
 
 ## To install
 

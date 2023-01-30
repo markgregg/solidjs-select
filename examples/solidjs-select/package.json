@@ -1,7 +1,7 @@
 {
   "name": "solidjs-select-example",
-  "homepage": "https://markgregg.github.io/SolidJsSelect/",
-  "version": "1.0.0",
+  "homepage": "https://markgregg.github.io/solidjs-select/",
+  "version": "1.0.1",
   "scripts": {
     "start": "vite",
     "dev": "vite",
