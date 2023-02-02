@@ -23,7 +23,7 @@ export interface SelectStyle {
   disabledClassName?: string;
   inputStyle?: JSX.CSSProperties;
   inputDisabledStyle?: JSX.CSSProperties;
-  inputClassName?: JSX.CSSProperties;
+  inputClassName?: string;
   inputDisabledClassName?: string;
   clearSelectionStyle?: JSX.CSSProperties;
   clearSelectionDisabledStyle?: JSX.CSSProperties;

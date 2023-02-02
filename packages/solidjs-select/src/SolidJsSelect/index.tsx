@@ -19,7 +19,8 @@ import { createMemo, createSignal, JSX, onCleanup, onMount } from 'solid-js';
 import { Cache, createCache } from '../cache/cache';
 import { generateGuid } from '../utils/guidGenerator';
 import { errorMessage } from '../utils/utils';
-import VirtualContainer from 'solidjs-virtualisation';
+import VirtualContainer from "solidjs-virtualisation";
+import { VirtualContainerRef } from 'solidjs-virtualisation/dist/types/VirtualContainer';
 
 export interface SolidJsSelectProps<T extends object | string>
   extends SelectProps<T>,
@@ -31,6 +32,7 @@ export interface SolidJsSelectProps<T extends object | string>
 const SolidJsSelect = <T extends object | string>(
   props: SolidJsSelectProps<T>
 ) => {
+  let mainDivRef: HTMLDivElement | undefined = undefined;
   const selectId = generateGuid();
   const getSelection = (props: SelectProps<T>): T[] => {
     try {
@@ -63,6 +65,7 @@ const SolidJsSelect = <T extends object | string>(
     }
     return [];
   };
+  const [containerRef, setContainerRef] = createSignal<VirtualContainerRef>();
   const [clearHover, setClearHover] = createSignal<boolean>(false);
   const [selected, setSelected] = createSignal<T[]>(getSelection(props));
   const [caption, setCaption] = createSignal<string>('');
@@ -74,7 +77,6 @@ const SolidJsSelect = <T extends object | string>(
   const [lookedUpChoices, setLookedUpChoices] = createSignal<T[]>();
   const [highlightedIndex, setHighlightedIndex] = createSignal<number>(0);
   const [token, setToken] = createSignal<string>('');
-  const [position, setPosition] = createSignal<number>();
   const cache = createMemo<Cache<T> | undefined>(() =>
     props.cacheLookUp
       ? createCache<T>(
@@ -106,7 +108,7 @@ const SolidJsSelect = <T extends object | string>(
       token,
       setToken,
       cache,
-      setPosition
+      containerRef
     )
   );
 
@@ -135,17 +137,22 @@ const SolidJsSelect = <T extends object | string>(
     }, 10);
   };
 
+  const clientWidth = (): string | undefined => {
+    return mainDivRef ? `${mainDivRef.clientWidth}px` : undefined;
+  }
+
   const choiceProps = (
     item: T,
-    index: number
+    index: number,
+    selected: boolean
   ): ChoiceProps<T> & ChoiceStyle => {
     return {
       itemText: props.itemText,
       item,
       index,
-      selectedItems: selected,
+      isSelected: selected,
       highlightedIndex,
-      onSelected: functions().itemClicked,
+      onItemClicked: functions().itemClicked,
       choiceDisabled: functions().isDisabled(item),
       ...(props as ChoiceStyle),
     };
@@ -153,14 +160,15 @@ const SolidJsSelect = <T extends object | string>(
 
   const constructChoice = (
     item: T,
-    index: number
+    index: number,
+    selected: boolean
   ): JSX.Element =>
     props.choiceComponent ? (
       <div>
-        {props.choiceComponent({ ...choiceProps(item, index) })}
+        {props.choiceComponent({ ...choiceProps(item, index, selected) })}
       </div>
     ) : (
-      <SolidJsChoice {...choiceProps(item, index)} />
+      <SolidJsChoice {...choiceProps(item, index, selected)} />
     );
 
   const toolTip = (child: JSX.Element): JSX.Element =>
@@ -192,6 +200,17 @@ const SolidJsSelect = <T extends object | string>(
           'background-image': 'var(--solidjsSelectBackgroundImage)',
         };
 
+  const dropdownStateStyle = (
+    disabled?: boolean,
+    dropdownIconDisabledStyle?: JSX.CSSProperties,
+    dropdownIconStyle?: JSX.CSSProperties
+  ): JSX.CSSProperties =>
+    disabled
+      ? (dropdownIconDisabledStyle ?? {
+        color: 'var(--solidjsSelectDisabledFontColor)',
+        })
+      : dropdownIconStyle ?? {}
+  
   const clearSelectionStateStyle = (
     disabled?: boolean,
     clearSelecitonDisabledStyle?: JSX.CSSProperties
@@ -251,6 +270,7 @@ const SolidJsSelect = <T extends object | string>(
       onMouseLeave={functions().hideToolTip}
       onPaste={functions().pasteText}
       onClick={functions().textInputClicked}
+      ref={mainDivRef}
     >
       {toolTip(
         <div
@@ -378,13 +398,11 @@ const SolidJsSelect = <T extends object | string>(
                     ? props.dropIconDisabledClassName
                     : props.dropIconClassName
                 }
-                style={
-                  props.disabled
-                    ? props.dropdownIconDisabledStyle ?? {
-                        color: 'var(--solidjsSelectDisabledFontColor)',
-                      }
-                    : props.dropdownIconStyle ?? {}
-                }
+                style={{
+                  'font-size':
+                    'var(--solidjsSelectDropDownIconSize, small)',
+                  ...dropdownStateStyle(props.disabled, props.dropdownIconDisabledStyle, props.dropdownIconStyle)
+                }}
               >
                 {props.dropdownIcon ? (
                   <props.dropdownIcon />
@@ -423,7 +441,7 @@ const SolidJsSelect = <T extends object | string>(
                   : '300px',
                 position: 'absolute',
                 top: '30px',
-                width: '-webkit-fill-available',
+                width: clientWidth() ?? '-webkit-fill-available',
                 overflow: 'auto',
                 'border-radius': '5px',
                 'z-index': 1,
@@ -436,10 +454,11 @@ const SolidJsSelect = <T extends object | string>(
             >
               {visibleChoices().length > 0 && (
                 <VirtualContainer
+                  
+                  ref={setContainerRef}
                   orientation="Vertical"
                   items={visibleChoices()}
                   listSize={props.maxListHeight ?? 300}
-                  moveToItem={position()}
                   render={(item, index) => (
                     <div
                       id={`item_${index}`}
@@ -449,7 +468,8 @@ const SolidJsSelect = <T extends object | string>(
                     >
                       {constructChoice(
                         item,
-                        index
+                        index,
+                        selected().includes(item)
                       )}
                     </div>
                   )}

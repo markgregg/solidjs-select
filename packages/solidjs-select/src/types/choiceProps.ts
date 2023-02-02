@@ -2,8 +2,8 @@ export interface ChoiceProps<T extends object | string> {
   item: T;
   index: number;
   highlightedIndex: () => number;
-  selectedItems: () => T[];
+  isSelected: boolean;
   itemText?: (item: T) => string;
-  onSelected: (item: T) => void;
+  onItemClicked: (item: T) => void;
   choiceDisabled?: boolean;
 }

@@ -1,5 +1,5 @@
 import CSS from 'csstype';
-import SolidJsSelect, { SolidJsSelectProps } from "../SolidJsSelect";
+import SolidJsSelect, { SolidJsSelectProps } from "solidjs-select";
 import { ClipboardCopy } from '../components';
 import { AiOutlineEdit, AiOutlineCopy, AiOutlineCode } from 'solid-icons/ai';
 import {

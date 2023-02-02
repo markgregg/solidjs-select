@@ -1,27 +1,25 @@
 import { TiTick } from 'solid-icons/ti';
 import { createEffect, createSignal, JSX } from 'solid-js';
-import { Choice, ChoiceStyle } from '../types';
-import { ChoiceProps } from '../types';
+import { Choice, ChoiceStyle, ChoiceProps } from '../types';
 import { errorMessage } from '../utils/utils';
 
 const SolidJsChoice = <T extends object | string>(
   props: ChoiceProps<T> & ChoiceStyle 
 ) => {
   const [highLighted, setHighLighted] = createSignal<boolean>(false);
-  const [selected, setSelected] = createSignal<boolean>(props.selectedItems().includes(props.item));
+  
   const selectItem = (event: MouseEvent) => {
     if (!props.choiceDisabled) {
-      props.onSelected(props.item);
+      props.onItemClicked(props.item);
       event.stopPropagation();
     }
   };
 
   createEffect(() => {
-    setSelected(props.selectedItems().includes(props.item));
-  });
-
-  createEffect(() => {
-    setHighLighted(props.index === props.highlightedIndex());
+    const highlight = props.index === props.highlightedIndex();
+    if( highlight !== highLighted()) {
+      setHighLighted(highlight);
+    }
   });
 
   const getItemText = (item: T): string => {
@@ -38,8 +36,15 @@ const SolidJsChoice = <T extends object | string>(
     return '';
   };
 
-  const solidjsChoiceStateStyles: JSX.CSSProperties =
-    selected() && props.selectionType === 'Background'
+  const solidjsChoiceStateStyles = (highLighted: boolean): JSX.CSSProperties => {
+    return highLighted
+        ? props.choiceHoverStyle ?? {
+          color: 'var(--solidjsSelectHighlightedFontColor)',
+          'background-color':
+            'var(--solidjsSelectHighlightedBackgroundColor, lightgray)',
+          'background-image': 'var(--solidjsSelectHighlightedBackgroundImage)',
+        }
+      : props.isSelected && props.selectionType === 'Background'
       ? {
           'background-color':
             'var(--solidjsSelectSelectedBackgroundBackgroundColor,Gainsboro)',
@@ -49,17 +54,10 @@ const SolidJsChoice = <T extends object | string>(
       ? props.choiceDisabledStyle ?? {
           color: 'var(--solidjsSelectDisabledFontColor, darkgray)',
           'background-color':
-            'var(--solidjsSelectDisabledBackgroundColor, Gainsboro)',
+            'var(--solidjsSelectDisabledBackgroundColor)',
           'background-image': 'var(--solidjsSelectDisabledBackgroundImage)',
         }
-      : highLighted()
-      ? props.choiceHoverStyle ?? {
-          color: 'var(--solidjsSelectHighlightedFontColor)',
-          'background-color':
-            'var(--solidjsSelectHighlightedBackgroundColor, lightgray)',
-          'background-image': 'var(--solidjsSelectHighlightedBackgroundImage)',
-        }
-      : selected()
+      : props.isSelected
       ? props.choiceSelectedStyle ?? {
           color: 'var(--solidjsSelectSelectedFontColor)',
           'background-color': 'var(--solidjsSelectSelectedBackgroundColor)',
@@ -69,6 +67,7 @@ const SolidJsChoice = <T extends object | string>(
           'background-color': 'var(--solidjsSelectBackgroundColor)',
           'background-image': 'var(--solidjsSelectChoiceBackgroundImage)',
         };
+  }
 
   return (
     <div
@@ -77,28 +76,23 @@ const SolidJsChoice = <T extends object | string>(
           ? props.choiceDisabledClassName
           : highLighted()
           ? props.choiceHoverClassName
-          : selected()
+          : props.isSelected
           ? props.choiceSelectedClassName
           : props.choiceClassName
       }
-      style={
-        props.choiceStyle
-          ? {
-              ...props.choiceStyle,
-              ...solidjsChoiceStateStyles,
-            }
-          : {
-              display: 'flex',
-              'flex-direction': 'row',
-              'align-items': 'center',
-              position: 'relative',
-              border: 'var(--solidjsSelectChoiceSelectedIndicatorBorder)',
-              ...solidjsChoiceStateStyles,
-            }
-      }
+      style={{
+        "user-select": "none",
+        display: 'flex',
+        'flex-direction': 'row',
+        'align-items': 'center',
+        position: 'relative',
+        border: 'var(--solidjsSelectChoiceSelectedIndicatorBorder)',
+        ...props.choiceStyle,
+        ...solidjsChoiceStateStyles(highLighted()),
+      }}
       onClick={selectItem}
     >
-      {selected() && props.selectionType === 'Border' && (
+      {props.isSelected && props.selectionType === 'Border' && (
         <>
           <div
             style={{
@@ -113,7 +107,7 @@ const SolidJsChoice = <T extends object | string>(
         </>
       )}
       <div>
-        {selected() &&
+        {props.isSelected &&
           (!props.selectionType || props.selectionType === 'Icon') && (
             <div
               class={props.choiceSelectedIconClassName}

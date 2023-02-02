@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: white;
-  background-color: darkblue;
+  background-color: var(--pageColor2, white);
+  color: var(--solidjsSelectFontColor, black);
   border-radius: 5px;
   width: 140px;
   user-select: none;

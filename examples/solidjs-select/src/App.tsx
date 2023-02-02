@@ -1,4 +1,4 @@
-import SolidJsSelect from "./SolidJsSelect";
+import SolidJsSelect from "solidjs-select";
 import About from './About';
 import Examples from './Examples';
 import VirtualisationExample from './VirtualisationExample';
@@ -6,7 +6,7 @@ import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['About', 'Examples','virtualise'];
+const pages = ['About', 'Examples','Virtualise'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
@@ -56,7 +56,7 @@ const App = () => {
           <div class="context">
             {(page() === 'Examples' && <Examples />) ||
               (page() === 'About' && <About />) ||
-              (page() === 'virtualise' && <VirtualisationExample />)}
+              (page() === 'Virtualise' && <VirtualisationExample theme={themeName()}/>)}
           </div>
           <div
             class="footer"
