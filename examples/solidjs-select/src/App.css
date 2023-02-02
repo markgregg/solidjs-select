@@ -69,7 +69,7 @@
   font-size: medium;
   font-weight: bold;
   text-align: center;
-  color: var(--pageFont);
+  color: var(--solidjsSelectFontColor,var(--pageFont));
 }
 
 .menu-item:hover {

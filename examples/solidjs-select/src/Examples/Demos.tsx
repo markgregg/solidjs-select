@@ -1,18 +1,11 @@
 import CSS from 'csstype';
-import SolidJsSelect, { SolidJsSelectProps } from 'solidjs-select';
-import {
-  ChoiceProps,
-  ChoiceStyle,
-  DisplayProps,
-  DisplayStyle,
-} from 'solidjs-select';
+import SolidJsSelect, { SolidJsSelectProps } from "../SolidJsSelect";
 import { ClipboardCopy } from '../components';
 import { AiOutlineEdit, AiOutlineCopy, AiOutlineCode } from 'solid-icons/ai';
 import {
   bigString,
   bigTypesObjectString,
   choices,
-  ColorItem,
   massiveChoice,
   objectChoices,
   typedObjectChoices,
@@ -64,33 +57,6 @@ const itemDisplay = (
   </div>
 );
 
-const choice = <T extends object | string>(
-  props: ChoiceProps<T> & ChoiceStyle
-) => {
-  return (
-    <div onClick={() => props.onSelected(props.item)}>
-      {itemDisplay(
-        (props.item as ColorItem).text,
-        (props.item as ColorItem).color,
-        props.choiceSelected
-      )}
-    </div>
-  );
-};
-
-const itemText = <T extends object | string>(selected: T[]): string =>
-  selected.length === 0 ? '' : (selected[0] as ColorItem).text;
-
-const itemColor = <T extends object | string>(selected: T[]): string =>
-  selected.length === 0 ? 'black' : (selected[0] as ColorItem).color;
-
-const display = <T extends object | string>(
-  props: DisplayStyle & DisplayProps<T>
-) => (
-  <div>
-    {itemDisplay(itemText(props.selected), itemColor(props.selected), false)}
-  </div>
-);
 
 interface DemoItemProperties<T extends object | string> {
   title: string;
@@ -99,6 +65,7 @@ interface DemoItemProperties<T extends object | string> {
   code?: string;
   sandbox?: string;
   bindSelection?: string;
+  fontSize?: string;
 }
 const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
   const [showCode, setShowCode] = createSignal<string>('');
@@ -141,7 +108,14 @@ const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
       <div class="demo-description">
         <p>{props.description}</p>
       </div>
-      <div class="demo-item">
+      <div class="demo-item"
+        style={{
+          '--solidjsSelectFontSize': props.fontSize ?? 'large',
+          '--solidjsSelectSelectedIconSize': props.fontSize ?? 'large',
+          '--solidjsSelectClearSelectionIconSize': props.fontSize ?? 'large',
+          '--solidjsSelectDropDownIconSize': props.fontSize ?? 'large'
+          }}
+      >
         <SolidJsSelect {...compactSelectProps()} />
         <div class="icons">
           <AiOutlineCode
@@ -452,6 +426,156 @@ export default function App() {
               </div>
             );
           }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+      </div>
+    ),
+  },
+  {
+    name: 'Font Size',
+    demo: () => (
+      <div class="demo">
+        <DemoItem
+          title="Extra Large font"
+          description="Extra Large font"
+          fontSize="x-large"
+          props={{
+            width: '400px',
+            title: 'Extra Large font',
+            choices: choices,
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+        <DemoItem
+          title="Large font"
+          description="Large font"
+          fontSize="large"
+          props={{
+            width: '300px',
+            title: 'Large font',
+            choices: choices
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+        <DemoItem
+          title="Meduium font"
+          description="Meduium font"
+          fontSize="medium"
+          props={{
+            width: '300px',
+            title: 'Meduium font',
+            choices: choices
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+        <DemoItem
+          title="Small font"
+          description="Small font"
+          fontSize="small"
+          props={{
+            width: '300px',
+            title: 'Small font',
+            choices: choices,
+          }}
+          code={`import SolidJsSelect from "compact-select";
+import { objectChoices } from "./data";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <div class="Space">
+      <SolidJsSelect
+        title="test"
+        choices={objectChoices}
+        maximumSelections={3}
+        itemValue={(item) => item.name} 
+        itemText={(item) => item.name}
+      />
+    </div>
+  );
+}`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-bound-gr13pq"
+        />
+        <DemoItem
+          title="Very Small font"
+          description="Very small font"
+          fontSize="x-small"
+          props={{
+            width: '300px',
+            title: 'Very small font',
+            choices: choices,
+          }}
+          code={`import SolidJsSelect from "compact-select";
+import { choices } from "./data";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <div class="Space">
+      <SolidJsSelect
+        title="test"
+        choices={choices}
+      />
+    </div>
+  );
+}`}
           sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
         />
       </div>

@@ -3,6 +3,7 @@ import { Cache } from '../cache/cache';
 import { errorMessage } from '../utils/utils';
 import { generateGuid } from '../utils/guidGenerator';
 import { Choice, SelectProps } from '../types';
+import { VirtualContainerRef } from '../VirtualContainer';
 
 export interface SolidJsSelectFunctions<T extends Choice | object | string> {
   getItemText: (item: T) => string;
@@ -65,7 +66,7 @@ export const createSolidJsSelectFunctions = <
   token: () => string,
   setToken: (value: string) => void,
   cache: () => Cache<T> | undefined,
-  setPosition: (value?: number) => void
+  containerRef: () => VirtualContainerRef | undefined
 ): SolidJsSelectFunctions<T> => {
   const functions: SolidJsSelectFunctions<T> = {
     getItemText: (item: T): string => {
@@ -422,8 +423,10 @@ export const createSolidJsSelectFunctions = <
 
     //makes highlighted item visible
     makeItemVisible: (index: number) => {
-      setPosition(index);
-      setPosition(undefined);
+      const ref = containerRef();
+      if( ref ) {
+        ref.scrollToItem(index);
+      }
     },
 
     findNextEnabled: (index: number): number => {
@@ -445,10 +448,8 @@ export const createSolidJsSelectFunctions = <
     adjustHighlightedIndex: (index: number) => {
       if (index !== -1) {
         functions.makeItemVisible(index);
+        setHighlightedIndex(index);        
       }
-      setTimeout(() => {
-        setHighlightedIndex(index);
-      }, 10);
     },
 
     //called when a key is pressed
@@ -492,6 +493,27 @@ export const createSolidJsSelectFunctions = <
               const index = functions.findPrevEnabled(
                 visibleChoices().length - 1
               );
+              functions.adjustHighlightedIndex(index);
+            }
+            event.preventDefault();
+            break;
+          case 'PageDown':
+            if (showChoices() && visibleChoices().length > 0) {
+              const index =
+                highlightedIndex() === -1 ||
+                highlightedIndex() >= visibleChoices().length - 10
+                  ? functions.findNextEnabled(0)
+                  : functions.findNextEnabled(highlightedIndex() + 10);
+              functions.adjustHighlightedIndex(index);
+            }
+            event.preventDefault();
+            break;
+          case 'PageUp':
+            if (showChoices() && visibleChoices().length > 0) {
+              const index =
+                highlightedIndex() <= 0
+                  ? functions.findPrevEnabled(visibleChoices().length - 10)
+                  : functions.findPrevEnabled(highlightedIndex() - 10);
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();

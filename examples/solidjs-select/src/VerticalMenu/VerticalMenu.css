@@ -5,7 +5,7 @@
   align-items: flex-start;
   border-radius: 8px;
   background-color: var(--pageColor2);
-  color: var(--compactSelectFontColor);
+  color: var(--solidjsSelectFontColor,var(--pageFont));
 }
 
 .vmenu-heading {

@@ -20,6 +20,10 @@ export const applyTheme = (theme: string) => {
         'White'
       );
       document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipFontColor',
+        'White'
+      );
+      document.documentElement.style.setProperty(
         '--solidjsSelectFonHighlightColor',
         'LightGray'
       );
@@ -44,8 +48,8 @@ export const applyTheme = (theme: string) => {
         'none'
       );
       document.documentElement.style.setProperty(
-        '--solidjsSelectBorder',
-        'none'
+        '--solidjsSelectBorder', 
+        '#0d0d7a 2px Solid'
       );
       document.documentElement.style.setProperty(
         '--pageColor1',
@@ -54,26 +58,26 @@ export const applyTheme = (theme: string) => {
       document.documentElement.style.setProperty('--pageColor2', '#4444B1');
       document.documentElement.style.setProperty('--pageColor3', '#9c9ccb');
       document.documentElement.style.setProperty('--pageFont', 'Black');
-      document.documentElement.style.setProperty('--scrollbarColor', '#9c9ccb');
+      document.documentElement.style.setProperty('--scrollbarColor', '#4444B1');
       document.documentElement.style.setProperty(
         '--scrollbarArrowColor',
-        '#4444B1'
+        'White'
       );
       document.documentElement.style.setProperty(
         '--scrollbarArrowHoverColor',
-        '#4444B1'
+        'darkgray'
       );
       document.documentElement.style.setProperty(
         '--scrollbarArrowHoverBackground',
-        '#5555ad'
-      );
-      document.documentElement.style.setProperty(
-        '--scrollbarThumbColor',
         '#4444B1'
       );
       document.documentElement.style.setProperty(
+        '--scrollbarThumbColor',
+        'White'
+      );
+      document.documentElement.style.setProperty(
         '--scrollbarThumbHoverColor',
-        '#5555ad'
+        'darkgray'
       );
       break;
     case Themes.Dark:
@@ -83,7 +87,11 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFontColor',
-        '#dddddd'
+        'lightgray'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipFontColor',
+        'lightgray'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFonHighlightColor',
@@ -107,7 +115,7 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectBorder',
-        '#441468 2px Solid'
+        '#873ac1 2px Solid'
       );
       document.documentElement.style.setProperty(
         '--pageColor1',
@@ -117,28 +125,28 @@ export const applyTheme = (theme: string) => {
       document.documentElement.style.setProperty('--pageColor3', ' #9C2BF1');
       document.documentElement.style.setProperty(
         '--pageFont',
-        '#eeeeee'
+        'lightgray'
       );
-      document.documentElement.style.setProperty('--scrollbarColor', '#9C2BF1');
+      document.documentElement.style.setProperty('--scrollbarColor', '#681CA1');
       document.documentElement.style.setProperty(
         '--scrollbarArrowColor',
-        '#512E6B'
+        'lightgray'
       );
       document.documentElement.style.setProperty(
         '--scrollbarArrowHoverColor',
-        '#512E6B'
+        'white'
       );
       document.documentElement.style.setProperty(
         '--scrollbarArrowHoverBackground',
-        '#6b3495'
+        '#681CA1'
       );
       document.documentElement.style.setProperty(
         '--scrollbarThumbColor',
-        '#512E6B'
+        'lightgray'
       );
       document.documentElement.style.setProperty(
         '--scrollbarThumbHoverColor',
-        '#6b3495'
+        'white'
       );
       break;
     case Themes.Light:
@@ -148,6 +156,10 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFontColor',
+        '#3D350B'
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipFontColor',
         '#3D350B'
       );
       document.documentElement.style.setProperty(
@@ -178,7 +190,7 @@ export const applyTheme = (theme: string) => {
       document.documentElement.style.setProperty('--pageColor2', '#F7E575');
       document.documentElement.style.setProperty('--pageColor3', '#EFD233');
       document.documentElement.style.setProperty('--pageFont', '#3D350B');
-      document.documentElement.style.setProperty('--scrollbarColor', '#EFD233');
+      document.documentElement.style.setProperty('--scrollbarColor', '#F7E575');
       document.documentElement.style.setProperty(
         '--scrollbarArrowColor',
         '#d5b70e'
@@ -207,6 +219,10 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFontColor',
+        null
+      );
+      document.documentElement.style.setProperty(
+        '--solidjsSelectToolTipFontColor',
         null
       );
       document.documentElement.style.setProperty(

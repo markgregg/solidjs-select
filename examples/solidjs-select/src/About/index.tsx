@@ -31,7 +31,7 @@ const About = () => {
       <p class="indent">
         <b class="bullet">&#x2022;</b>
         <em>
-          The ability to paste in up to 2000 comma delimited customer codes and to have the records selected. I test
+          The ability to paste up to 2000 comma delimited customer codes and to have the records selected. I test
            this at work with 10000. Incidently I was using Oracle as backend, which has a limit of 1000 values. To
            overcome Oracle's limitation I split the query into multiple promises and joined the results.
         </em>
