@@ -3,7 +3,7 @@ import { Cache } from '../cache/cache';
 import { errorMessage } from '../utils/utils';
 import { generateGuid } from '../utils/guidGenerator';
 import { Choice, SelectProps } from '../types';
-import { VirtualContainerRef } from '../VirtualContainer';
+import { VirtualContainerRef } from "solidjs-virtualisation";
 
 export interface SolidJsSelectFunctions<T extends Choice | object | string> {
   getItemText: (item: T) => string;
@@ -28,8 +28,6 @@ export interface SolidJsSelectFunctions<T extends Choice | object | string> {
   selectItem: (item: T) => void;
   deselectItem: (item: T) => void;
   makeItemVisible: (index: number) => void;
-  findNextEnabled: (index: number) => number;
-  findPrevEnabled: (index: number) => number;
   adjustHighlightedIndex: (index: number) => void;
   inputKeyPressed: (event: KeyboardEvent) => void;
   pasteText: (event: ClipboardEvent) => void;
@@ -274,7 +272,6 @@ export const createSolidJsSelectFunctions = <
       setInputText('');
       functions.updateVisibleChoices();
       setShowChoices(true);
-      functions.adjustHighlightedIndex(visibleChoices().length > 0 ? 0 : -1);
       functions.hideToolTip();
     },
 
@@ -429,27 +426,13 @@ export const createSolidJsSelectFunctions = <
       }
     },
 
-    findNextEnabled: (index: number): number => {
-      while (
-        index < visibleChoices().length &&
-        functions.isDisabled(visibleChoices()[index])
-      )
-        index++;
-      return index;
-    },
-
-    findPrevEnabled: (index: number): number => {
-      while (index > 0 && functions.isDisabled(visibleChoices()[index]))
-        index--;
-      return index;
-    },
 
     //updates the highlighted item index
     adjustHighlightedIndex: (index: number) => {
       if (index !== -1) {
         functions.makeItemVisible(index);
-        setHighlightedIndex(index);        
       }
+      setHighlightedIndex(index);
     },
 
     //called when a key is pressed
@@ -462,8 +445,8 @@ export const createSolidJsSelectFunctions = <
               const index =
                 highlightedIndex() === -1 ||
                 highlightedIndex() >= visibleChoices().length - 1
-                  ? functions.findNextEnabled(0)
-                  : functions.findNextEnabled(highlightedIndex() + 1);
+                  ? 0
+                  : highlightedIndex() + 1;
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();
@@ -473,8 +456,8 @@ export const createSolidJsSelectFunctions = <
             if (showChoices() && visibleChoices().length > 0) {
               const index =
                 highlightedIndex() <= 0
-                  ? functions.findPrevEnabled(visibleChoices().length - 1)
-                  : functions.findPrevEnabled(highlightedIndex() - 1);
+                  ? visibleChoices().length - 1
+                  : highlightedIndex() - 1;
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();
@@ -482,7 +465,7 @@ export const createSolidJsSelectFunctions = <
           case 'Home':
             //move to start
             if (showChoices() && visibleChoices().length > 0) {
-              const index = functions.findNextEnabled(0);
+              const index = 0;
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();
@@ -490,9 +473,7 @@ export const createSolidJsSelectFunctions = <
           case 'End':
             //move to end
             if (showChoices() && visibleChoices().length > 0) {
-              const index = functions.findPrevEnabled(
-                visibleChoices().length - 1
-              );
+              const index = visibleChoices().length - 1;
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();
@@ -502,8 +483,8 @@ export const createSolidJsSelectFunctions = <
               const index =
                 highlightedIndex() === -1 ||
                 highlightedIndex() >= visibleChoices().length - 10
-                  ? functions.findNextEnabled(0)
-                  : functions.findNextEnabled(highlightedIndex() + 10);
+                  ? 0
+                  : highlightedIndex() + 10;
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();
@@ -512,8 +493,8 @@ export const createSolidJsSelectFunctions = <
             if (showChoices() && visibleChoices().length > 0) {
               const index =
                 highlightedIndex() <= 0
-                  ? functions.findPrevEnabled(visibleChoices().length - 10)
-                  : functions.findPrevEnabled(highlightedIndex() - 10);
+                  ? visibleChoices().length - 1
+                  : highlightedIndex() - 10;
               functions.adjustHighlightedIndex(index);
             }
             event.preventDefault();

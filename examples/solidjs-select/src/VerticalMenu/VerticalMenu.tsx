@@ -26,7 +26,7 @@ const VerticalMenu: Component<VerticalMenuProps> = ({
               'background-color':
                 highlight() === option || option === active()
                   ? 'var(--pageColor3)'
-                  : 'var(--pageColor2)',
+                  : 'var(--pageColor1)',
             }}
             onMouseEnter={() => setHighlight(option)}
             onMouseLeave={() => setHighlight(undefined)}

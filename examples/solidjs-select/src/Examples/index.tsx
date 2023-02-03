@@ -4,7 +4,7 @@ import { categories } from './Demos';
 import './Examples.css';
 
 const Examples = () => {
-  const [demo, setDemo] = createSignal<string>('');
+  const [demo, setDemo] = createSignal<string>(categories[0].name);
 
   const constructDemo = (demoName: string): JSX.Element => {
     const category = categories.find((cat) => cat.name === demoName);

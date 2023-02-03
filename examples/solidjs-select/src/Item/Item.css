@@ -5,7 +5,6 @@
   background-color: var(--pageColor2, white);
   color: var(--solidjsSelectFontColor, black);
   border-radius: 5px;
-  width: 140px;
   user-select: none;
   -ms-user-select: none;
 }

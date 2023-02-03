@@ -92,7 +92,7 @@ const VirtualisationExample: Component<VirtualisationExampleProps> = (
               <Item
                 index={item}
                 orientation={orientation()}
-                variableHeight={size() === 'Variable'}
+                variableSize={size() === 'Variable'}
               />
             )}
           />

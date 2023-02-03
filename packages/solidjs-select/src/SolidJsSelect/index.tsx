@@ -141,6 +141,10 @@ const SolidJsSelect = <T extends object | string>(
     return mainDivRef ? `${mainDivRef.clientWidth}px` : undefined;
   }
 
+  const clientHeight = (): string | undefined => {
+    return mainDivRef ? `${mainDivRef.clientHeight + 4}px` : undefined;
+  }
+
   const choiceProps = (
     item: T,
     index: number,
@@ -440,7 +444,7 @@ const SolidJsSelect = <T extends object | string>(
                   ? `${props.maxListHeight}px`
                   : '300px',
                 position: 'absolute',
-                top: '30px',
+                top: clientHeight() ?? '30px',
                 width: clientWidth() ?? '-webkit-fill-available',
                 overflow: 'auto',
                 'border-radius': '5px',
