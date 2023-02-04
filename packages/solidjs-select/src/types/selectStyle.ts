@@ -29,10 +29,6 @@ export interface SelectStyle {
   clearSelectionDisabledStyle?: JSX.CSSProperties;
   clearSelectionClassName?: string;
   clearSelectionDisabledClassName?: string;
-  titleStyle?: JSX.CSSProperties;
-  titleDisabledStyle?: JSX.CSSProperties;
-  titleClassName?: string;
-  titleDisabledClassName?: string;
   choiceListStyle?: JSX.CSSProperties;
   choiceListClassName?: string;
   dropdownIconStyle?: JSX.CSSProperties;

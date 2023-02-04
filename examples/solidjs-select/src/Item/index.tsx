@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js';
-import { Horizontal, Orientation, Vertical } from '../vtypes';
+import { Orientation } from "solidjs-virtualisation";
 import './Item.css';
 
 export interface ItemProps {
@@ -10,7 +10,7 @@ export interface ItemProps {
 const Item: Component<ItemProps> = (props: ItemProps) => {
 
   const itemStyle = (orientation: Orientation) => {
-    return orientation === Horizontal
+    return orientation === 'Horizontal'
       ? {
         height: '40px',
       }
@@ -21,13 +21,13 @@ const Item: Component<ItemProps> = (props: ItemProps) => {
 
 
   const getImageHeight = (variableSize: boolean, orientation: Orientation, index: number) => {
-    return variableSize && orientation === Vertical
+    return variableSize && orientation === 'Vertical'
       ? 40 + (index % 5) * 10
       : '40px';
   };
 
   const getImageWidth = (variableSize: boolean, orientation: Orientation, index: number) => {
-    return variableSize && orientation === Horizontal
+    return variableSize && orientation === 'Horizontal'
       ? 40 + (index % 5) * 10
       : '40px';
   };
@@ -42,7 +42,7 @@ const Item: Component<ItemProps> = (props: ItemProps) => {
         alt={props.index.toString()}
         src={`https://picsum.photos/id/${(props.index % 10) + 1}/200/300`}
       />
-      <pre>Item {props.index}</pre>
+      <pre>Item {props.index.toLocaleString()}</pre>
     </div>
   );
 };

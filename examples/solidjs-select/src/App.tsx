@@ -1,21 +1,21 @@
 import SolidJsSelect from "solidjs-select";
-import About from './About';
+import GettingStarted from './GettingStarted';
 import Examples from './Examples';
 import VirtualisationExample from './VirtualisationExample';
 import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['About', 'Examples','Virtualise'];
+const pages = ['Getting Started', 'Examples','Virtual Container'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
-    Themes.None.toString()
+    Themes.Plain.toString()
   );
-  const [page, setPage] = createSignal<string>('Examples');
+  const [page, setPage] = createSignal<string>('Getting Started');
 
   onMount(() => {
-    applyTheme(Themes.None);
+    applyTheme(Themes.Plain);
   });
 
   const setTheme = (theme: string[]) => {
@@ -28,16 +28,20 @@ const App = () => {
       <div class="page">
         <div class="body">
           <div class="header">
-            <h1 class="title">SolidJsSelect</h1>
+            <h1 class="title">SolidJs-Select</h1>
             <p class="statement">
-              A compact, highly function select control
+              A compact, highly functional select control for SolidJs
             </p>
           </div>
           <div class="menu-bar">
             <div class="menu">
               {pages.map((pg) => (
                 <div class="menu-item" onClick={() => setPage(pg)}>
-                  <p class="menu-text">{pg}</p>
+                  {
+                    ( pg === page()) 
+                    ? <u><p class="menu-text">{pg}</p></u>
+                    : <p class="menu-text">{pg}</p> 
+                  }
                 </div>
               ))}
             </div>
@@ -55,8 +59,8 @@ const App = () => {
           </div>
           <div class="context">
             {(page() === 'Examples' && <Examples />) ||
-              (page() === 'About' && <About />) ||
-              (page() === 'Virtualise' && <VirtualisationExample theme={themeName()}/>)}
+              (page() === 'Getting Started' && <GettingStarted />) ||
+              (page() === 'Virtual Container' && <VirtualisationExample theme={themeName()}/>)}
           </div>
           <div
             class="footer"

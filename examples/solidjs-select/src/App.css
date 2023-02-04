@@ -17,7 +17,6 @@
   position: absolute;
   max-width: 800px;
   width: 100%;
-  font-family: 'Cabin';
   font-size: medium;
   background-color: var(--pageColor1);
   color: var(--pageFont);
@@ -53,6 +52,8 @@
   padding-bottom: 15px;
   border-radius: 8px;
   background-color: var(--pageColor2);
+  border-bottom: 3px solid var(--pageColor4);
+  border-right: 3px solid var(--pageColor4);
 }
 
 .menu {
@@ -105,4 +106,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
+  border-bottom: 3px solid var(--pageColor4);
+  border-right: 3px solid var(--pageColor4);
+  padding: 15px;
 }

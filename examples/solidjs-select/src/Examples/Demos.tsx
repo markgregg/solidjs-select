@@ -163,10 +163,10 @@ export const categories: Category[] = [
       <div class="demo">
         <DemoItem
           title="String binding"
-          description="The simple list of strings"
+          description="The below example demonstrates binding to an array of strings."
           props={{
             width: '300px',
-            title: 'Bind String',
+            title: 'String Bind',
             choices: choices,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -187,10 +187,10 @@ export default function App() {
         />
         <DemoItem
           title="Object binding"
-          description="Bound to an array of objects, getters provide the text, value and disbaled state (if required)."
+          description="Binding to an array of JSON objects is possible, but requires itemValue and itemText properties to be supplied.."
           props={{
             width: '300px',
-            title: 'Object binding',
+            title: 'Object Bind',
             choices: objectChoices,
             itemValue: (item) => item.name,
             itemText: (item) => item.name,
@@ -217,10 +217,10 @@ export default function App() {
         />
         <DemoItem
           title="Typed object binding"
-          description="Bound to an array of objects that implement the Choice interface."
+          description="If the objects support the choice interface, then the itemValue and itemText properties are not required."
           props={{
             width: '300px',
-            title: 'Typed binding',
+            title: 'Typed Bind',
             choices: typedObjectChoices,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -243,15 +243,15 @@ return (
     ),
   },
   {
-    name: 'Single select',
+    name: 'Single selection',
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="Single string"
-          description="Minimum and maximum selections set to 1."
+          title="Single value"
+          description="The below example demonstrates a control where the user has to select at least 1 item."
           props={{
             width: '300px',
-            title: 'One String',
+            title: 'One item',
             choices: choices,
             maximumSelections: 1,
             minimumSelections: 1,
@@ -275,11 +275,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/simple-single-string-compact-select-j6hpei"
         />
         <DemoItem
-          title="Single or no value"
-          description="Maximum selections set to 1."
+          title="Single or none"
+          description="It is possible to configure the control to allow the user to select 1 or no items."
           props={{
             width: '300px',
-            title: 'One/Zero value',
+            title: 'One Or None',
             choices: objectChoices,
             maximumSelections: 1,
             itemValue: (item) => item.name,
@@ -305,11 +305,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/simple-single-no-value-compact-select-oskfme"
         />
         <DemoItem
-          title="Single bound selection"
-          description="Bound to state."
+          title="Single on change"
+          description="The below example demonstrates listening to the onChange for a single selection."
           props={{
             width: '300px',
-            title: 'Single bound',
+            title: 'Single Change',
             choices: choices,
             maximumSelections: 1,
             minimumSelections: 1,
@@ -345,11 +345,11 @@ export default function App() {
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="Multi string"
-          description="Unlimited number of selections."
+          title="Multiple selection"
+          description="The below example demonstrates a contorl configured for ultimate number of selections."
           props={{
             width: '300px',
-            title: 'Multi string',
+            title: 'Multiple',
             choices: choices,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -369,11 +369,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
         />
         <DemoItem
-          title="Fixed multi value"
-          description="Limited to a specific number of selections, in this case three."
+          title="Limited selection"
+          description="If there is a requirement to limit the number of selections that is possible. In this case the max is 3."
           props={{
             width: '300px',
-            title: 'Three objects',
+            title: 'Three Items',
             choices: objectChoices,
             maximumSelections: 3,
             itemValue: (item) => item.name,
@@ -399,11 +399,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/multi-string-compact-select-bound-gr13pq"
         />
         <DemoItem
-          title="Multi bound selection"
-          description="Bound to state"
+          title="Multiple on change"
+          description="The below example demonstrates listening to the onchange of mutiple selection control."
           props={{
             width: '300px',
-            title: 'Multi bound',
+            title: 'Multiple Change',
             choices: choices,
           }}
           bindSelection="multi"
@@ -436,12 +436,12 @@ export default function App() {
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="Extra Large font"
-          description="Extra Large font"
+          title="Extra large font"
+          description="Font size is variable and the control can potentially handle any size. It is also possible to change the tooltip and title size, but hasn't been done for these examples."
           fontSize="x-large"
           props={{
             width: '400px',
-            title: 'Extra Large font',
+            title: 'Extra Large Font',
             choices: choices,
           }}
           code={`import { useState } from "react";
@@ -467,11 +467,11 @@ export default function App() {
         />
         <DemoItem
           title="Large font"
-          description="Large font"
+          description="Some sizes are better than others."
           fontSize="large"
           props={{
             width: '300px',
-            title: 'Large font',
+            title: 'Large Font',
             choices: choices
           }}
           code={`import { useState } from "react";
@@ -501,7 +501,7 @@ export default function App() {
           fontSize="medium"
           props={{
             width: '300px',
-            title: 'Meduium font',
+            title: 'Meduium Font',
             choices: choices
           }}
           code={`import { useState } from "react";
@@ -531,7 +531,7 @@ export default function App() {
           fontSize="small"
           props={{
             width: '300px',
-            title: 'Small font',
+            title: 'Small Font',
             choices: choices,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -582,15 +582,145 @@ export default function App() {
     ),
   },
   {
+    name: 'Tooltip',
+    demo: () => (
+      <div class="demo">
+        <DemoItem
+          title="Tooltip default"
+          description="By default the tooltip is place beneath the control."
+          props={{
+            width: '400px',
+            title: 'Tooltip Default',
+            choices: choices,
+            selected: ['Nuala', 'Sarah', 'Jane', 'Dianna']
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+        <DemoItem
+          title="Tooltip above"
+          description="It is possible to place the tooltip above."
+          props={{
+            width: '400px',
+            title: 'Tooltip Above',
+            choices: choices,
+            selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
+            toolTipPosition: 'above'
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+        <DemoItem
+          title="Tooltip left"
+          description="Or to the left of the control."
+          props={{
+            width: '400px',
+            title: 'Tooltip Left',
+            choices: choices,
+            selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
+            toolTipPosition: 'left'
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+        <DemoItem
+          title="Tooltip right"
+          description="Or to the right of the control. In this instance the tooltip is trimming by the containing div's overflow setting."
+          props={{
+            width: '400px',
+            title: 'Tooltip Right',
+            choices: choices,
+            selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
+            toolTipPosition: 'right'
+          }}
+          code={`import { useState } from "react";
+          import SolidJsSelect from "compact-select";
+          import { choices } from "./data";
+          import "./styles.css";
+          
+          export default function App() {
+            const [selected, setSelected] = useState<String[]>([]);
+            
+            return (
+              <div class="Space">
+                <SolidJsSelect
+                  title="test"
+                  choices={choices}
+                  selected={selected}
+                  onChange={setSelected}
+                />
+              </div>
+            );
+          }`}
+          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+        />
+      </div>
+    ),
+  },
+  {
     name: 'Select style',
     demo: () => (
       <div class="demo">
         <DemoItem
           title="Icon style"
-          description="Highlighted by an icon."
+          description="There are a few options fot the selection indication. The default is a tick icon, which can be changed."
           props={{
             width: '300px',
-            title: 'Icon style',
+            title: 'Icon Style',
             choices: choices,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -611,10 +741,10 @@ export default function App() {
         />
         <DemoItem
           title="Border style"
-          description="Highlighted by the left border."
+          description="If a change of icon isn't what you are after, you can use a border indicator."
           props={{
             width: '300px',
-            title: 'Border style',
+            title: 'Border Style',
             selectionType: 'Border',
             choices: choices,
           }}
@@ -639,7 +769,7 @@ export default function App() {
         />
         <DemoItem
           title="Background Style"
-          description="Highlighted by a change in background"
+          description="Or the options background colour."
           props={{
             width: '300px',
             title: 'Background Style',
@@ -675,11 +805,11 @@ export default function App() {
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="Single string dropdown"
-          description="A simple single value dropdown list with no lookup"
+          title="Single dropdown list"
+          description="As well as combo controls, simple dropdowns are available."
           props={{
             width: '300px',
-            title: 'String dropdown',
+            title: 'Dropdown',
             choices: choices,
             maximumSelections: 1,
             selectType: 'dropdown',
@@ -703,11 +833,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/single-string-dropdown-er55j4"
         />
         <DemoItem
-          title="Multi value dropdown"
-          description="A multi value dropdown list."
+          title="Multiple value dropdown"
+          description="It is also possible to have multiple value dropdowns."
           props={{
             width: '300px',
-            title: 'Values dropdown',
+            title: 'Values Dropdown',
             choices: objectChoices,
             selectType: 'dropdown',
             itemValue: (item) => item.name,
@@ -740,12 +870,12 @@ export default function App() {
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="String switch"
-          description="A switch that alternates between values."
+          title="Switch"
+          description="Switches are also possible. Useful if there are a limited number of options."
           props={{
             width: '120px',
             hideTitle: true,
-            title: 'String switch',
+            title: 'Switch',
             choices: choices,
             selectType: 'switch',
             minimumSelections: 1,
@@ -772,15 +902,15 @@ export default function App() {
     ),
   },
   {
-    name: 'Look ups',
+    name: 'Typeahead Look-ups',
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="String look-up"
-          description="Look-ups can be use to get data from an external source, or to limit the number of items in the list. Performs a look-up as the user types."
+          title="Typeahead look-up"
+          description="If you can't access all avaiable options, then options can be provied by a promise."
           props={{
             width: '300px',
-            title: 'String look-up',
+            title: 'Typeahead Look-up',
             typeAheadLookUp: fetchItems,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -800,11 +930,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/string-look-up-go9qds"
         />
         <DemoItem
-          title="Cached value look-up"
-          description="A cached string type ahead look-up select control. Performs a look-up as the user types and caches the values so later searches are instnace."
+          title="Cached look-up"
+          description="If the source of the options is not performant, then there is the option to cache."
           props={{
             width: '300px',
-            title: 'Value cache',
+            title: 'Cached Look-up',
             typeAheadLookUp: slowFetchObjects,
             itemValue: (item) => item.name,
             itemText: (item) => item.name,
@@ -831,10 +961,10 @@ export default function App() {
         />
         <DemoItem
           title="Expiring Cached string look-up"
-          description="A cached and expire string type ahead look-up select control. Performs a look-up as the user types and cahces for a limited time."
+          description="To avoid a build up of memory, the cached items can be given a time to live."
           props={{
             width: '300px',
-            title: 'String expire',
+            title: 'Expiring Cache',
             typeAheadLookUp: slowFetchItems,
             cacheLookUp: true,
             cacheTimeToLive: 10,
@@ -867,11 +997,11 @@ export default function App() {
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="Disbaled string"
-          description="A disbaled string select control."
+          title="Disbaled Control"
+          description="Controls can be completely disabled."
           props={{
             width: '300px',
-            title: 'String disabled',
+            title: 'Disabled',
             choices: choices,
             selected: ['Sarah', 'Dianna'],
             disabled: true,
@@ -895,11 +1025,11 @@ export default function App() {
           sandbox="https://codesandbox.io/s/disabled-string-1tl6jk"
         />
         <DemoItem
-          title="Disbaled items in typed value"
-          description="A typed value select control with disabled items."
+          title="Disbaled items"
+          description="Or if using an array of objects that implement the Choice interface, indivual items can be disabled."
           props={{
             width: '300px',
-            title: 'Typed look-up',
+            title: 'Disabled Items',
             choices: typedObjectChoices,
           }}
           code={`import SolidJsSelect from "compact-select";
@@ -922,7 +1052,7 @@ export default function App() {
     ),
   },
   {
-    name: 'Paste select',
+    name: 'Paste Selections',
     demo: () => (
       <div class="demo">
         <div class="copy-text">
@@ -930,8 +1060,8 @@ export default function App() {
           <ClipboardCopy text={bigString} />
         </div>
         <DemoItem
-          title="Paste strings"
-          description="An example of pasting strings to select strings."
+          title="Paste items 1"
+          description="It's possible to paste a comma delimited list of strings into the control."
           props={{
             width: '300px',
             title: 'String paste',
@@ -960,8 +1090,8 @@ export default function App() {
           <ClipboardCopy text={bigTypesObjectString} />
         </div>
         <DemoItem
-          title="Paste values for typed"
-          description="An example of pasting strings to select typed objects."
+          title="Pasting for typed objects"
+          description="The paste option also works for arrays of objects."
           props={{
             width: '300px',
             title: 'Object paste',
@@ -994,7 +1124,7 @@ export default function App() {
       <div class="demo">
         <DemoItem
           title="virtualised"
-          description="An example of a large number of items that normally wouldn't be possible."
+          description="The only limit to the number of options is memory. The control uses virtualisation, so most options are not rendered until required."
           props={{
             width: '300px',
             title: 'Style',

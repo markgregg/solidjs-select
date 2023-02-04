@@ -12,7 +12,7 @@ const VerticalMenu: Component<VerticalMenuProps> = ({
   options,
   onSelect,
 }) => {
-  const [active, setActive] = createSignal<string>();
+  const [active, setActive] = createSignal<string>(options[0]);
   const [highlight, setHighlight] = createSignal<string>();
 
   return (
@@ -35,7 +35,7 @@ const VerticalMenu: Component<VerticalMenuProps> = ({
               onSelect(option);
             }}
           >
-            <p>{option}</p>
+            <p class='vmenu-text'>{option}</p>
           </li>
         ))}
       </ul>

@@ -37,3 +37,8 @@
   padding-bottom: 1px;
   padding-inline-start: 20px;
 }
+
+.vmenu-text {
+  margin-block-start: 13px;
+  margin-block-end: 13px;
+}

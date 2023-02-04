@@ -9,6 +9,7 @@ import {
   SelectStyle,
   DisplayStyle,
   ChoiceProps,
+  TitleStyle,
 } from '../types';
 import SolidJsDisplay from '../SolidJsDisplay';
 import {
@@ -19,20 +20,22 @@ import { createMemo, createSignal, JSX, onCleanup, onMount } from 'solid-js';
 import { Cache, createCache } from '../cache/cache';
 import { generateGuid } from '../utils/guidGenerator';
 import { errorMessage } from '../utils/utils';
-import VirtualContainer from "solidjs-virtualisation";
-import { VirtualContainerRef } from 'solidjs-virtualisation/dist/types/VirtualContainer';
+import VirtualContainer, { VirtualContainerRef } from "solidjs-virtualisation";
+import SolidTitle from '../SolidTitle';
 
 export interface SolidJsSelectProps<T extends object | string>
   extends SelectProps<T>,
     SelectStyle,
     ChoiceStyle,
     DisplayStyle,
+    TitleStyle,
     ToolTipStyle {}
 
 const SolidJsSelect = <T extends object | string>(
   props: SolidJsSelectProps<T>
 ) => {
   let mainDivRef: HTMLDivElement | undefined = undefined;
+  
   const selectId = generateGuid();
   const getSelection = (props: SelectProps<T>): T[] => {
     try {
@@ -77,6 +80,7 @@ const SolidJsSelect = <T extends object | string>(
   const [lookedUpChoices, setLookedUpChoices] = createSignal<T[]>();
   const [highlightedIndex, setHighlightedIndex] = createSignal<number>(0);
   const [token, setToken] = createSignal<string>('');
+  const [tracking, setTracking] = createSignal<boolean>(false);
   const cache = createMemo<Cache<T> | undefined>(() =>
     props.cacheLookUp
       ? createCache<T>(
@@ -108,17 +112,18 @@ const SolidJsSelect = <T extends object | string>(
       token,
       setToken,
       cache,
-      containerRef
+      containerRef,
+      tracking
     )
   );
 
   onMount(() => {
-    document.addEventListener('click', functions().clickedAway, true);
+    document.addEventListener('mouseup', functions().clickedAway, true);
     functions().updateDisplayText();
   });
 
   onCleanup(() => {
-    document.removeEventListener('click', functions().clickedAway, true);
+    document.removeEventListener('mouseup', functions().clickedAway, true);
   });
 
   const setClearIconHover = () => {
@@ -175,19 +180,19 @@ const SolidJsSelect = <T extends object | string>(
       <SolidJsChoice {...choiceProps(item, index, selected)} />
     );
 
-  const toolTip = (child: JSX.Element): JSX.Element =>
+  const toolTip = (): JSX.Element =>
     props.toolTipComponent ? (
       props.toolTipComponent({
-        children: child,
+        parentHeight: mainDivRef?.clientHeight,
+        parentWidth: mainDivRef?.clientWidth,
         tip: caption(),
-        show: showToolTip(),
         ...(props as ToolTipStyle),
       })
     ) : (
       <ToolTip
-        children={child}
+        parentHeight={mainDivRef?.clientHeight}
+        parentWidth={mainDivRef?.clientWidth}
         tip={caption()}
-        show={showToolTip()}
         {...(props as ToolTipStyle)}
       />
     );
@@ -239,13 +244,6 @@ const SolidJsSelect = <T extends object | string>(
         }
       : {};
 
-  const titleStateStyle = (disabled?: boolean): JSX.CSSProperties =>
-    disabled
-      ? {
-          color: 'var(--solidjsSelectDisabledFontColor, darkgray)',
-        }
-      : {};
-
   return (
     <div
       class={props.disabled ? props.disabledClassName : props.className}
@@ -276,221 +274,211 @@ const SolidJsSelect = <T extends object | string>(
       onClick={functions().textInputClicked}
       ref={mainDivRef}
     >
-      {toolTip(
+      {
+        showToolTip() && caption() !== "" && toolTip()
+      }
+      <div
+        style={{
+          display: 'flex',
+          'flex-direction': 'row',
+          'align-items': 'center',
+          width: '100%'
+        }}
+      >
+        {(!props.maximumSelections || props.maximumSelections < 1) &&
+          selected().length > 0 &&
+          props.selectType !== 'switch' && (
+            <div
+              class={
+                props.disabled
+                  ? props.clearSelectionDisabledClassName
+                  : props.clearSelectionClassName
+              }
+              style={{
+                'font-size':
+                  'var(--solidjsSelectClearSelectionIconSize, small)',
+                'align-content': 'center',
+                display: 'flex',
+                color: 'var(--solidjsSelectFontColor, black)',
+                ...props.clearSelectionStyle,
+                ...clearSelectionStateStyle(
+                  props.disabled,
+                  props.clearSelectionDisabledStyle
+                ),
+              }}
+              onClick={functions().clearSelection}
+              onMouseEnter={setClearIconHover}
+              onMouseLeave={clearClearIconHover}
+            >
+              {props.clearSelectionIcon ? (
+                <props.clearSelectionIcon />
+              ) : (
+                <RiSystemCloseLine />
+              )}
+            </div>
+          )}
         <div
           style={{
             display: 'flex',
             'flex-direction': 'row',
             'align-items': 'center',
+            flex: 1,
           }}
         >
-          {(!props.maximumSelections || props.maximumSelections < 1) &&
-            selected().length > 0 &&
-            props.selectType !== 'switch' && (
-              <div
-                class={
-                  props.disabled
-                    ? props.clearSelectionDisabledClassName
-                    : props.clearSelectionClassName
-                }
-                style={{
-                  'font-size':
-                    'var(--solidjsSelectClearSelectionIconSize, small)',
-                  'align-content': 'center',
-                  display: 'flex',
-                  color: 'var(--solidjsSelectFontColor, black)',
-                  ...props.clearSelectionStyle,
-                  ...clearSelectionStateStyle(
-                    props.disabled,
-                    props.clearSelectionDisabledStyle
-                  ),
-                }}
-                onClick={functions().clearSelection}
-                onMouseEnter={setClearIconHover}
-                onMouseLeave={clearClearIconHover}
-              >
-                {props.clearSelectionIcon ? (
-                  <props.clearSelectionIcon />
-                ) : (
-                  <RiSystemCloseLine />
-                )}
-              </div>
-            )}
           <div
             style={{
-              display: 'flex',
-              'flex-direction': 'row',
-              'align-items': 'center',
               flex: 1,
+              'flex-basis': '100%',
             }}
           >
-            <div
-              style={{
-                flex: 1,
-                'flex-basis': '100%',
-              }}
-            >
-              {showChoices() &&
-              (!props.selectType || props.selectType === 'standard') ? (
-                <input
-                  ref={setInputRef}
-                  id={'csInput' + selectId}
-                  class={
-                    props.disabled
-                      ? props.inputDisabledClassName
-                      : props.inputClassName
-                  }
-                  style={{
-                    'margin-left': '3px',
-                    'background-color': 'transparent',
-                    border: 'none',
-                    'max-width': 'var(--solidjsSelectInputTextMaxWidth,100%)',
-                    color: 'var(--solidjsSelectFontColor, black)',
-                    width: '100%',
-                    outline: 'none',
-                    ...props.inputStyle,
-                    ...inputStateStyle(
-                      props.disabled,
-                      props.inputDisabledStyle
-                    ),
-                  }}
-                  value={
-                    showChoices()
-                      ? inputText()
-                      : displayText() === ''
-                      ? props.title
-                      : displayText()
-                  }
-                  placeholder={
-                    showChoices() && inputText() === ''
-                      ? displayText()
-                      : undefined
-                  }
-                  disabled={props.disabled}
-                  spellcheck={false}
-                  autocapitalize="off"
-                  autocomplete="off"
-                  onInput={functions().textChanged}
-                  onKeyDown={functions().inputKeyPressed}
-                />
-              ) : props.displayComponent ? (
-                props.displayComponent({
-                  title: props.title,
-                  text: displayText(),
-                  choicesShown: showChoices(),
-                  selected: selected(),
-                  selectType: props.selectType,
-                  disabled: props.disabled,
-                  ...(props as DisplayStyle),
-                })
-              ) : (
-                <SolidJsDisplay
-                  title={props.title}
-                  text={displayText()}
-                  choicesShown={showChoices()}
-                  selected={selected()}
-                  selectType={props.selectType}
-                  disabled={props.disabled}
-                  {...(props as DisplayStyle)}
-                />
-              )}
-            </div>
-            {!props.hideDropdownIcon && props.selectType !== 'switch' && (
-              <div
+            {showChoices() &&
+            (!props.selectType || props.selectType === 'standard') ? (
+              <input
+                ref={setInputRef}
+                id={'csInput' + selectId}
                 class={
                   props.disabled
-                    ? props.dropIconDisabledClassName
-                    : props.dropIconClassName
+                    ? props.inputDisabledClassName
+                    : props.inputClassName
                 }
                 style={{
-                  'font-size':
-                    'var(--solidjsSelectDropDownIconSize, small)',
-                  ...dropdownStateStyle(props.disabled, props.dropdownIconDisabledStyle, props.dropdownIconStyle)
+                  'margin-left': '3px',
+                  'background-color': 'transparent',
+                  border: 'none',
+                  'max-width': 'var(--solidjsSelectInputTextMaxWidth,100%)',
+                  color: 'var(--solidjsSelectFontColor, black)',
+                  width: '100%',
+                  outline: 'none',
+                  ...props.inputStyle,
+                  ...inputStateStyle(
+                    props.disabled,
+                    props.inputDisabledStyle
+                  ),
                 }}
-              >
-                {props.dropdownIcon ? (
-                  <props.dropdownIcon />
-                ) : (
-                  <RiSystemArrowDropDownLine />
-                )}
-              </div>
+                value={
+                  showChoices()
+                    ? inputText()
+                    : displayText() === ''
+                    ? props.title
+                    : displayText()
+                }
+                placeholder={
+                  showChoices() && inputText() === ''
+                    ? displayText()
+                    : undefined
+                }
+                disabled={props.disabled}
+                spellcheck={false}
+                autocapitalize="off"
+                autocomplete="off"
+                onInput={functions().textChanged}
+                onKeyDown={functions().inputKeyPressed}
+              />
+            ) : props.displayComponent ? (
+              props.displayComponent({
+                title: props.title,
+                text: displayText(),
+                choicesShown: showChoices(),
+                selected: selected(),
+                selectType: props.selectType,
+                disabled: props.disabled,
+                ...(props as DisplayStyle),
+              })
+            ) : (
+              <SolidJsDisplay
+                title={props.title}
+                text={displayText()}
+                choicesShown={showChoices()}
+                selected={selected()}
+                selectType={props.selectType}
+                disabled={props.disabled}
+                {...(props as DisplayStyle)}
+              />
             )}
           </div>
-          {(showChoices() || displayText() !== '') && !props.hideTitle && (
-            <p
+          {!props.hideDropdownIcon && props.selectType !== 'switch' && (
+            <div
               class={
                 props.disabled
-                  ? props.titleDisabledClassName
-                  : props.titleClassName
+                  ? props.dropIconDisabledClassName
+                  : props.dropIconClassName
               }
               style={{
-                position: 'absolute',
-                top: '-30px',
-                'font-size': 'var(--solidjsSelectTitleFontSize, small)',
-                'font-weight': 'var(--solidjsSelectTitleFontWeight, 100)',
-                ...props.titleStyle,
-                ...titleStateStyle(props.disabled),
+                'font-size':
+                  'var(--solidjsSelectDropDownIconSize, small)',
+                ...dropdownStateStyle(props.disabled, props.dropdownIconDisabledStyle, props.dropdownIconStyle)
               }}
             >
-              {props.title}
-            </p>
-          )}
-          {!props.disabled && showChoices() && (
-            <div
-              id={'csList' + selectId}
-              class={props.choiceListClassName}
-              style={{
-                'max-height': props.maxListHeight
-                  ? `${props.maxListHeight}px`
-                  : '300px',
-                position: 'absolute',
-                top: clientHeight() ?? '30px',
-                width: clientWidth() ?? '-webkit-fill-available',
-                overflow: 'auto',
-                'border-radius': '5px',
-                'z-index': 1,
-                border: 'var(--solidjsSelectBorder, 2px solid WhiteSmoke)',
-                'background-color':
-                  'var(--solidjsSelectBackgroundColor, white)',
-                'background-image': 'var(--solidjsSelectBackgroundImage)',
-                ...props.choiceListStyle,
-              }}
-            >
-              {visibleChoices().length > 0 && (
-                <VirtualContainer
-                  
-                  ref={setContainerRef}
-                  orientation="Vertical"
-                  items={visibleChoices()}
-                  listSize={props.maxListHeight ?? 300}
-                  render={(item, index) => (
-                    <div
-                      id={`item_${index}`}
-                      onMouseOver={() =>
-                        functions().adjustHighlightedIndex(index)
-                      }
-                    >
-                      {constructChoice(
-                        item,
-                        index,
-                        selected().includes(item)
-                      )}
-                    </div>
-                  )}
-                />
-              )}
-              {visibleChoices().length === 0 &&
-                !props.choices &&
-                !lookedUpChoices() && (
-                  <p>{props.loadingText ?? 'Loading...'}</p>
-                )}
-              {props.choices?.length === 0 && lookedUpChoices() && (
-                <p>{props.noItemText ?? 'No items.'}</p>
+              {props.dropdownIcon ? (
+                <props.dropdownIcon />
+              ) : (
+                <RiSystemArrowDropDownLine />
               )}
             </div>
           )}
         </div>
-      )}
+        {(showChoices() || displayText() !== '') && !props.hideTitle && (
+          <SolidTitle
+            title={props.title}
+            disabled={props.disabled}
+            {...props as TitleStyle}
+          />
+        )}
+        {!props.disabled && showChoices() && (
+          <div
+            id={'csList' + selectId}
+            class={props.choiceListClassName}
+            style={{
+              'max-height': props.maxListHeight
+                ? `${props.maxListHeight}px`
+                : '300px',
+              position: 'absolute',
+              top: clientHeight() ?? '30px',
+              width: clientWidth() ?? '-webkit-fill-available',
+              overflow: 'auto',
+              'border-radius': '5px',
+              'z-index': 1,
+              border: 'var(--solidjsSelectBorder, 2px solid WhiteSmoke)',
+              'background-color':
+                'var(--solidjsSelectBackgroundColor, white)',
+              'background-image': 'var(--solidjsSelectBackgroundImage)',
+              ...props.choiceListStyle,
+            }}
+          >
+            {visibleChoices().length > 0 && (
+              <VirtualContainer
+                ref={setContainerRef}
+                orientation="Vertical"
+                items={visibleChoices()}
+                listSize={props.maxListHeight ?? 300}
+                onTracking={setTracking}
+                render={(item, index) => (
+                  <div
+                    id={`item_${index}`}
+                    onMouseOver={() =>
+                      functions().adjustHighlightedIndex(index)
+                    }
+                  >
+                    {constructChoice(
+                      item,
+                      index,
+                      selected().includes(item)
+                    )}
+                  </div>
+                )}
+              />
+            )}
+            {visibleChoices().length === 0 &&
+              !props.choices &&
+              !lookedUpChoices() && (
+                <p>{props.loadingText ?? 'Loading...'}</p>
+              )}
+            {props.choices?.length === 0 && lookedUpChoices() && (
+              <p>{props.noItemText ?? 'No items.'}</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

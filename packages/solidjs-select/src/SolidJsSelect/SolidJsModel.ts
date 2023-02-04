@@ -1,4 +1,3 @@
-import { JSX } from 'solid-js';
 import { Cache } from '../cache/cache';
 import { errorMessage } from '../utils/utils';
 import { generateGuid } from '../utils/guidGenerator';
@@ -64,7 +63,8 @@ export const createSolidJsSelectFunctions = <
   token: () => string,
   setToken: (value: string) => void,
   cache: () => Cache<T> | undefined,
-  containerRef: () => VirtualContainerRef | undefined
+  containerRef: () => VirtualContainerRef | undefined,
+  tracking: () => boolean
 ): SolidJsSelectFunctions<T> => {
   const functions: SolidJsSelectFunctions<T> = {
     getItemText: (item: T): string => {
@@ -277,7 +277,7 @@ export const createSolidJsSelectFunctions = <
 
     //document click handler
     clickedAway: (mouseEvent: MouseEvent) => {
-      if (!showChoices()) {
+      if (!showChoices() || tracking()) {
         return;
       }
       try {
@@ -492,7 +492,8 @@ export const createSolidJsSelectFunctions = <
           case 'PageUp':
             if (showChoices() && visibleChoices().length > 0) {
               const index =
-                highlightedIndex() <= 0
+              highlightedIndex() === -1 ||
+              highlightedIndex() <= 10
                   ? visibleChoices().length - 1
                   : highlightedIndex() - 10;
               functions.adjustHighlightedIndex(index);

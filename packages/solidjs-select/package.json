@@ -1,6 +1,6 @@
 {
   "name": "solidjs-select",
-  "version": "0.1.3",
+  "version": "0.3.1",
   "description": "Select control for solid-js",
   "type": "module",
   "files": [
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "solid-icons": "^1.0.4",
-    "solidjs-virtualisation": "^0.1.3"
+    "solidjs-virtualisation": "^0.2.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",

@@ -1,9 +1,7 @@
-import { Component, createEffect, createSignal, JSX, onMount } from 'solid-js';
+import { Component, createEffect, createSignal, onMount } from 'solid-js';
 import './VirtualisationExample.css';
 import Item from '../Item';
-import VirtualContainer from "solidjs-virtualisation"
-import { Horizontal, Orientation, Vertical } from '../vtypes';
-
+import VirtualContainer, { Orientation } from "solidjs-virtualisation";
 
 export interface VirtualisationExampleProps {
   theme: string;
@@ -12,12 +10,13 @@ export interface VirtualisationExampleProps {
 const VirtualisationExample: Component<VirtualisationExampleProps> = (
   props: VirtualisationExampleProps
 ) => {
-  const [orientation, setHorizontal] = createSignal<Orientation>(Vertical);
+  const [orientation, setHorizontal] = createSignal<Orientation>('Vertical');
   const [size, setSize] = createSignal<'Fixed' | 'Variable'>('Fixed');
   const [items, setItems] = createSignal<number[]>([])
   const [itemCount, setItemCount] = createSignal<number>(10000000)
+
   const orientationChanged = () => {
-    setHorizontal(orientation() === Vertical ? Horizontal : Vertical);
+    setHorizontal(orientation() === 'Vertical' ? 'Horizontal' : 'Vertical');
   };
 
   onMount(() => {
@@ -52,18 +51,22 @@ const VirtualisationExample: Component<VirtualisationExampleProps> = (
   };
 
   const contentStyle = () =>
-    orientation() === Horizontal
+    orientation() === 'Horizontal'
       ? {
           width: '500px',
           height: "80px"
         }
       : {
-          height: '500px',
+          height: '400px',
           "width": "200px"
         };
 
   return (
     <div class='main'>
+      <p>SolidJs is fast, because rather than keeping a virtual DOM, it only updates elements in response to a reaction. 
+        In SolidJs-Select the options are rendered by a single reaction. This would typically cause SolidJs a lot of work.
+        The issues is overcome by virtualising the options. That way only the visible items are rendered and performance isn't impacted.
+      </p>
       <div class='settings'>
         <div class='columns'>
           <p class='entry'>Orientation</p>
