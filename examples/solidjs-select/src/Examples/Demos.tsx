@@ -1,7 +1,7 @@
 import CSS from 'csstype';
 import SolidJsSelect, { SolidJsSelectProps } from "solidjs-select";
 import { ClipboardCopy } from '../components';
-import { AiOutlineEdit, AiOutlineCopy, AiOutlineCode } from 'solid-icons/ai';
+import { AiOutlineCopy, AiOutlineCode } from 'solid-icons/ai';
 import {
   bigString,
   bigTypesObjectString,
@@ -20,6 +20,7 @@ import {
 } from '../utils';
 import './Examples.css';
 import { createSignal, JSX } from 'solid-js';
+import CodeView, { javaScriptDefault } from 'solidjs-show-code';
 
 const itemDisplay = (
   text: string,
@@ -133,7 +134,6 @@ const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
             />
             {showCopied() && <p class="copied-text">Copied</p>}
           </div>
-          <AiOutlineEdit onClick={() => window.open(props.sandbox, '_blank')} />
         </div>
       </div>
       {(props.bindSelection === 'single' && (
@@ -146,7 +146,14 @@ const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
             <p>selection={multiSelection().toString()}</p>
           </div>
         ))}
-      {showCode() === props.title && <div class="code"></div>}
+      {
+        showCode() === props.title && <div class="code">
+          <CodeView
+            code={props.code ?? ''}
+            styleSheet={javaScriptDefault}
+          />
+        </div>
+      }
     </div>
   );
 };
@@ -306,7 +313,7 @@ export default function App() {
         />
         <DemoItem
           title="Single on change"
-          description="The below example demonstrates listening to the onChange for a single selection."
+          description="The below example demonstrates listening to the onChange event for a single selection control."
           props={{
             width: '300px',
             title: 'Single Change',
@@ -400,7 +407,7 @@ export default function App() {
         />
         <DemoItem
           title="Multiple on change"
-          description="The below example demonstrates listening to the onchange of mutiple selection control."
+          description="The below example demonstrates listening to the onChange event when using mutiple selection control."
           props={{
             width: '300px',
             title: 'Multiple Change',
@@ -437,7 +444,7 @@ export default function App() {
       <div class="demo">
         <DemoItem
           title="Extra large font"
-          description="Font size is variable and the control can potentially handle any size. It is also possible to change the tooltip and title size, but hasn't been done for these examples."
+          description="Font size is variable and the control can potentially handle any size. It is also possible to change the tooltip and title font size, but that hasn't been done for these examples."
           fontSize="x-large"
           props={{
             width: '400px',

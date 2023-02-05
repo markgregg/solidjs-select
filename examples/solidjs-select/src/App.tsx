@@ -1,18 +1,19 @@
 import SolidJsSelect from "solidjs-select";
 import GettingStarted from './GettingStarted';
 import Examples from './Examples';
+import Styling from './Styling';
 import VirtualisationExample from './VirtualisationExample';
 import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['Getting Started', 'Examples','Virtual Container'];
+const pages = ['Examples','Virtual Container', 'Getting Started', 'Styling'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
     Themes.Plain.toString()
   );
-  const [page, setPage] = createSignal<string>('Getting Started');
+  const [page, setPage] = createSignal<string>('Examples');
 
   onMount(() => {
     applyTheme(Themes.Plain);
@@ -60,6 +61,7 @@ const App = () => {
           <div class="context">
             {(page() === 'Examples' && <Examples />) ||
               (page() === 'Getting Started' && <GettingStarted />) ||
+              (page() === 'Styling' && <Styling />) ||
               (page() === 'Virtual Container' && <VirtualisationExample theme={themeName()}/>)}
           </div>
           <div
