@@ -27,8 +27,8 @@ const App = () => {
   return (
     <div class="frame">
       <div class="page">
-        <div class="body">
-          <div class="header">
+        <div class='header'>
+          <div class="heading">
             <h1 class="title">SolidJs-Select</h1>
             <p class="statement">
               A compact, highly functional select control for SolidJs
@@ -58,6 +58,9 @@ const App = () => {
               />
             </div>
           </div>
+
+        </div>
+        <div class="body">
           <div class="context">
             {(page() === 'Examples' && <Examples />) ||
               (page() === 'Getting Started' && <GettingStarted />) ||

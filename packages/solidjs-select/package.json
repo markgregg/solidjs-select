@@ -1,6 +1,6 @@
 {
   "name": "solidjs-select",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Select control for solid-js",
   "type": "module",
   "files": [

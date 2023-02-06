@@ -19,13 +19,13 @@ const ToolTip = (props: ToolTipProps & ToolTipStyle) => {
           left: '0px',
           "width": `${parentWidth ?? 80}px`
         };
-      case 'left':
+      case 'right':
         return {
           top: '0px',
           left: parentWidth ? `${parentWidth+5}px` : '110%',
           "max-width": `${parentWidth ?? 80}px`
         };
-      case 'right':
+      case 'left':
         return {
           top: '0px',
           left: clientWidth ? `-${clientWidth+5}px` :'-90px',

@@ -1,15 +1,17 @@
 .vmenu {
   width: 150px;
+  height: 680px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   border-top: 3px solid var(--pageColor2);
-  border-bottom: 3px solid var(--pageColor2);
   border-left: 3px solid var(--pageColor2);
   background-color: var(--pageColor1);
   color: var(--pageFont);
+  position: absolute;
+  z-index: 1;
 }
 
 .vmenu-heading {

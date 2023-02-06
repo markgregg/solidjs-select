@@ -67,6 +67,7 @@ interface DemoItemProperties<T extends object | string> {
   sandbox?: string;
   bindSelection?: string;
   fontSize?: string;
+  extraContent?: JSX.Element;
 }
 const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
   const [showCode, setShowCode] = createSignal<string>('');
@@ -105,7 +106,7 @@ const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
 
   return (
     <div class="demo">
-      <h2 class="demo-title">{props.title}</h2>
+      <h3 class="demo-title">{props.title}</h3>
       <div class="demo-description">
         <p>{props.description}</p>
       </div>
@@ -145,7 +146,11 @@ const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
           <div>
             <p>selection={multiSelection().toString()}</p>
           </div>
-        ))}
+        ))
+      }
+      {
+        props.extraContent !== undefined && props.extraContent
+      }
       {
         showCode() === props.title && <div class="code">
           <CodeView
@@ -569,6 +574,9 @@ export default function App() {
             title: 'Very small font',
             choices: choices,
           }}
+          extraContent={
+            <div style={{height: '100px'}}/>
+          }
           code={`import SolidJsSelect from "compact-select";
 import { choices } from "./data";
 import "./styles.css";
@@ -686,7 +694,7 @@ export default function App() {
         />
         <DemoItem
           title="Tooltip right"
-          description="Or to the right of the control. In this instance the tooltip is trimming by the containing div's overflow setting."
+          description="Or to the right of the control."
           props={{
             width: '400px',
             title: 'Tooltip Right',
@@ -694,6 +702,9 @@ export default function App() {
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
             toolTipPosition: 'right'
           }}
+          extraContent={
+            <div style={{height: '200px'}}/>
+          }
           code={`import { useState } from "react";
           import SolidJsSelect from "compact-select";
           import { choices } from "./data";
@@ -909,11 +920,11 @@ export default function App() {
     ),
   },
   {
-    name: 'Typeahead Look-ups',
+    name: 'Promise Look-ups',
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="Typeahead look-up"
+          title="Promise look-up"
           description="If you can't access all avaiable options, then options can be provied by a promise."
           props={{
             width: '300px',
@@ -1062,10 +1073,6 @@ export default function App() {
     name: 'Paste Selections',
     demo: () => (
       <div class="demo">
-        <div class="copy-text">
-          <p>Copy for string and object paste</p>
-          <ClipboardCopy text={bigString} />
-        </div>
         <DemoItem
           title="Paste items 1"
           description="It's possible to paste a comma delimited list of strings into the control."
@@ -1075,6 +1082,12 @@ export default function App() {
             typeAheadLookUp: fetchItems,
             itemSearch: searchItems,
           }}
+          extraContent={
+            <div class="copy-text">
+              <p>Copy for string and object paste</p>
+              <ClipboardCopy text={bigString} />
+            </div>
+          }
           code={`import SolidJsSelect from "compact-select";
 import { fetchItems, searchItems } from "./data";
 import "./styles.css";
@@ -1092,10 +1105,6 @@ export default function App() {
 }`}
           sandbox="https://codesandbox.io/s/paste-strings-vebiz6"
         />
-        <div class="copy-text">
-          <p>Copy for typed paste</p>
-          <ClipboardCopy text={bigTypesObjectString} />
-        </div>
         <DemoItem
           title="Pasting for typed objects"
           description="The paste option also works for arrays of objects."
@@ -1105,6 +1114,12 @@ export default function App() {
             typeAheadLookUp: fetchTyped,
             itemSearch: searchTyped,
           }}
+          extraContent={
+            <div class="copy-text">
+              <p>Copy for typed paste</p>
+              <ClipboardCopy text={bigTypesObjectString} />
+            </div>
+          }
           code={`import SolidJsSelect from "compact-select";
 import { fetchTyped,searchTyped } from "./data";
 import "./styles.css";
@@ -1130,7 +1145,7 @@ export default function App() {
     demo: () => (
       <div class="demo">
         <DemoItem
-          title="virtualised"
+          title="Virtualised"
           description="The only limit to the number of options is memory. The control uses virtualisation, so most options are not rendered until required."
           props={{
             width: '300px',

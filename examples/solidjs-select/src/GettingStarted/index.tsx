@@ -1,4 +1,5 @@
 import './GettingStarted.css';
+import CodeView, { javaScriptDefault } from 'solidjs-show-code';
 
 const GettingStarted = () => {
   return (
@@ -16,14 +17,21 @@ const GettingStarted = () => {
           yarn add solidjs-select\n
         </pre>
         <p>Add the control to your project</p>
-        <pre>
-          <span style={{color:'purple'}}>import</span> <span style={{color:'blue'}}>SolidJsSelect</span> <span style={{color:'purple'}}>from</span> <span style={{color:'orange'}}>"solidjs-select"</span>;\n
-          \n
-          &lt;<span style={{color:'green'}}>SolidJsSelect</span>\n
-            \t<span style={{color:'blue'}}>title=</span><span style={{color:'orange'}}>"title"</span>\n
-            \t<span style={{color:'blue'}}>choices=</span><span style={{color:'orange'}}>{["choice1", "choice2", "choice3"]}</span>\n
-          /&gt;
-        </pre>
+        <CodeView 
+          code={`import SolidJsSelect from "solidjs-select";
+ 
+const Examples = () => {
+  return (
+    <div>
+      <SolidJsSelect
+        title="title"
+        choices={['choice1', 'choice2', 'choice3']}
+      />    
+    </div>
+  );
+};`       }
+          styleSheet={javaScriptDefault}
+        />
       </div>
     </div>
   );
