@@ -7,7 +7,7 @@
 
 .controls {
   flex: 1;
-  height: 650px;
+  height: 675px;
   overflow: auto;
   position: relative;
   padding-top: 25px;
@@ -19,6 +19,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-block-end: 40px;
+  width: 100%;
 }
 
 .demo-title {

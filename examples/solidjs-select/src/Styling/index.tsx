@@ -6,8 +6,8 @@ const Styling = () => {
       <div>
         <h2 class='no-space-after'>Styling</h2>
         <p>
-          It is possible to perform a great deal of the control's styling using variables. The variables can either be set globally, to style all instances of the control,
-          or locally, to style a single instance. 
+          It is possible to perform a great deal of the control's styling using variables. The variables can either be set globally, 
+          if you want to style all instances of the control, or locally, if you only want to style a single instance. 
         </p>
         <h3 class='no-space-after'>Style Varaibales</h3>
         <h4 class='no-space-after'>Main</h4>

@@ -64,7 +64,6 @@ interface DemoItemProperties<T extends object | string> {
   description: string;
   props: SolidJsSelectProps<T>;
   code?: string;
-  sandbox?: string;
   bindSelection?: string;
   fontSize?: string;
   extraContent?: JSX.Element;
@@ -159,6 +158,9 @@ const DemoItem = <T extends object | string>(props: DemoItemProperties<T>) => {
           />
         </div>
       }
+      <div class='seperator-parent'>
+        <div class="seperator"/>
+      </div>
     </div>
   );
 };
@@ -181,21 +183,20 @@ export const categories: Category[] = [
             title: 'String Bind',
             choices: choices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
+        title="example"
+        choices={['choice1','choice2','choice3']}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/string-binding-9jlrb0"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Object binding"
@@ -208,24 +209,27 @@ export default function App() {
             itemText: (item) => item.name,
             itemDisabled: (item) => item.disabled,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { objectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect from "solidjs-select";
 
-export default function App() {
+const choices = [
+  {name:'choice1', value: 1},
+  {name:'choice2', value: 2},
+  {name:'choice3', value: 3}
+]
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={objectChoices}
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
-        itemDisabled={(item) => item.disabled}
+        title="example"
+        choices={choices}
+        itemValue={item => item.value}
+        itemText={item => item.name}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/object-binding-forked-d54u70"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Typed object binding"
@@ -235,21 +239,25 @@ export default function App() {
             title: 'Typed Bind',
             choices: typedObjectChoices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { typedObjectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
-return (
-<div class="Space">
-  <SolidJsSelect
-    title="test"
-    choices={typedObjectChoices}
-  />
-</div>
-);
-}`}
-          sandbox="https://codesandbox.io/s/typed-binding-cdhsme"
+const choices: Choice[] = [
+  {name:'choice1', value: 1},
+  {name:'choice2', value: 2},
+  {name:'choice3', value: 3}
+]
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={choices}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -268,23 +276,22 @@ return (
             maximumSelections: 1,
             minimumSelections: 1,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices},
-        maximumSelections={1} 
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        maximumSelections={1}
         minimumSelections={1}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/simple-single-string-compact-select-j6hpei"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Single or none"
@@ -297,24 +304,21 @@ export default function App() {
             itemValue: (item) => item.name,
             itemText: (item) => item.name,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { objectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={objectChoices}
+        title="example"
+        choices={['choice1','choice2','choice3']}
         maximumSelections={1}
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/simple-single-no-value-compact-select-oskfme"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Single on change"
@@ -327,27 +331,23 @@ export default function App() {
             minimumSelections: 1,
           }}
           bindSelection="single"
-          code={`import SolidJsSelect from "compact-select";
-          import { useState } from "react";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  maximumSelections={1}
-                  minimumSelections={1}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/simple-single-string-compact-select-bound-to-sate-tlbmhf"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        maximumSelections={1}
+        minimumSelections={1}
+        onChange={selection => console.log(selection)}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -364,21 +364,20 @@ export default function App() {
             title: 'Multiple',
             choices: choices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
+        title="example"
+        choices={['choice1','choice2','choice3']}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Limited selection"
@@ -391,24 +390,21 @@ export default function App() {
             itemValue: (item) => item.name,
             itemText: (item) => item.name,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { objectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={objectChoices}
+        title="example"
+        choices={['choice1','choice2','choice3']}
         maximumSelections={3}
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-bound-gr13pq"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Multiple on change"
@@ -419,26 +415,21 @@ export default function App() {
             choices: choices,
           }}
           bindSelection="multi"
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        onChange={selection => console.log(selection)}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -456,26 +447,21 @@ export default function App() {
             title: 'Extra Large Font',
             choices: choices,
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        fontSize='x-large'
+        choices={['choice1','choice2','choice3']}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Large font"
@@ -486,26 +472,21 @@ export default function App() {
             title: 'Large Font',
             choices: choices
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        fontSize='large'
+        choices={['choice1','choice2','choice3']}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Meduium font"
@@ -516,26 +497,21 @@ export default function App() {
             title: 'Meduium Font',
             choices: choices
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        fontSize='medium'
+        choices={['choice1','choice2','choice3']}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Small font"
@@ -546,24 +522,21 @@ export default function App() {
             title: 'Small Font',
             choices: choices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { objectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={objectChoices}
-        maximumSelections={3}
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
+        title="example"
+        fontSize='small'
+        choices={['choice1','choice2','choice3']}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-bound-gr13pq"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Very Small font"
@@ -577,21 +550,21 @@ export default function App() {
           extraContent={
             <div style={{height: '100px'}}/>
           }
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
+        title="example"
+        fontSize='x-small'
+        choices={['choice1','choice2','choice3']}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -609,26 +582,20 @@ export default function App() {
             choices: choices,
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna']
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Tooltip above"
@@ -640,26 +607,21 @@ export default function App() {
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
             toolTipPosition: 'above'
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        toolTipPosition: 'above'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Tooltip left"
@@ -671,26 +633,21 @@ export default function App() {
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
             toolTipPosition: 'left'
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        toolTipPosition: 'left'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Tooltip right"
@@ -705,26 +662,21 @@ export default function App() {
           extraContent={
             <div style={{height: '200px'}}/>
           }
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        toolTipPosition: 'right'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -741,21 +693,20 @@ export default function App() {
             title: 'Icon Style',
             choices: choices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+         code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
+        title="example"
+        choices={['choice1','choice2','choice3']}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Border style"
@@ -766,24 +717,21 @@ export default function App() {
             selectionType: 'Border',
             choices: choices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { objectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={objectChoices}
-        maximumSelections={3}
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectionType='Border'
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-bound-gr13pq"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Background Style"
@@ -794,26 +742,21 @@ export default function App() {
             selectionType: 'Background',
             choices: choices,
           }}
-          code={`import { useState } from "react";
-          import SolidJsSelect from "compact-select";
-          import { choices } from "./data";
-          import "./styles.css";
-          
-          export default function App() {
-            const [selected, setSelected] = useState<String[]>([]);
-            
-            return (
-              <div class="Space">
-                <SolidJsSelect
-                  title="test"
-                  choices={choices}
-                  selected={selected}
-                  onChange={setSelected}
-                />
-              </div>
-            );
-          }`}
-          sandbox="https://codesandbox.io/s/multi-string-compact-select-2wbrc2"
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectionType='Background'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -832,23 +775,22 @@ export default function App() {
             maximumSelections: 1,
             selectType: 'dropdown',
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
+        title="example"
+        choices={['choice1','choice2','choice3']}
         maximumSelections={1}
-        selectType="dropdown"
+        selectType='dropdown'
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/single-string-dropdown-er55j4"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Multiple value dropdown"
@@ -861,24 +803,21 @@ export default function App() {
             itemValue: (item) => item.name,
             itemText: (item) => item.name,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { objectChoices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={objectChoices}
-        selectType="dropdown" 
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectType='dropdown'
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/multi-value-dropdown-z5sbbo"
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -898,29 +837,28 @@ export default function App() {
             selectType: 'switch',
             minimumSelections: 1,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
-        selectType="switch"
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectType='switch'
         minimumSelections={1}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/string-switch-0zf049"
+};
+
+export default Styling;`}
         />
       </div>
     ),
   },
   {
-    name: 'Promise Look-ups',
+    name: 'Promises',
     demo: () => (
       <div class="demo">
         <DemoItem
@@ -931,21 +869,20 @@ export default function App() {
             title: 'Typeahead Look-up',
             typeAheadLookUp: fetchItems,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { fetchItems } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        typeAheadLookUp={fetchItems}
+        title="example"
+        typeAheadLookUp={fetchitems}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/string-look-up-go9qds"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Cached look-up"
@@ -958,24 +895,21 @@ export default function App() {
             itemText: (item) => item.name,
             cacheLookUp: true,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { slowFetchObjects } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        typeAheadLookUp={slowFetchObjects}
-        itemValue={(item) => item.name} 
-        itemText={(item) => item.name}
+        title="example"
+        typeAheadLookUp={fetchitems}
         cacheLookUp={true}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/cached-value-look-up-t40j5f"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Expiring Cached string look-up"
@@ -988,24 +922,23 @@ export default function App() {
             cacheTimeToLive: 10,
             cacheExpiryCheck: 10,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { slowFetchItems } from "./data";
-import "./styles.css";
+           code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        typeAheadLookUp={slowFetchItems}
+        title="example"
+        typeAheadLookUp={fetchitems}
         cacheLookUp={true}
         cacheTimeToLive={10}
         cacheExpiryCheck={10}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/cache-string-and-expire-6yz4cg"
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -1024,23 +957,21 @@ export default function App() {
             selected: ['Sarah', 'Dianna'],
             disabled: true,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
-        selected={["Sarah", "Dianna"]}
+        title="example"
+        choices={['choice1','choice2','choice3']}
         disabled={true}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/disabled-string-1tl6jk"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Disbaled items"
@@ -1050,21 +981,25 @@ export default function App() {
             title: 'Disabled Items',
             choices: typedObjectChoices,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const choices: Choice[] = [
+  {name:'choice1', value: 1, disabled: true},
+  {name:'choice2', value: 2},
+  {name:'choice3', value: 3}
+]
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
+        title="example"
         choices={choices}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/disabled-items-8e2h2h"
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -1088,22 +1023,22 @@ export default function App() {
               <ClipboardCopy text={bigString} />
             </div>
           }
-          code={`import SolidJsSelect from "compact-select";
-import { fetchItems, searchItems } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
+        title="example"
+        choices={['choice1','choice2','choice3']}
         typeAheadLookUp={fetchItems}
         itemSearch={searchItems}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/paste-strings-vebiz6"
+};
+
+export default Styling;`}
         />
         <DemoItem
           title="Pasting for typed objects"
@@ -1120,22 +1055,22 @@ export default function App() {
               <ClipboardCopy text={bigTypesObjectString} />
             </div>
           }
-          code={`import SolidJsSelect from "compact-select";
-import { fetchTyped,searchTyped } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        typeAheadLookUp={fetchTyped}
-        itemSearch={searchTyped}
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        typeAheadLookUp={fetchItems}
+        itemSearch={searchItems}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/paste-vales-sccd7y"
+};
+
+export default Styling;`}
         />
       </div>
     ),
@@ -1152,30 +1087,21 @@ export default function App() {
             title: 'Style',
             choices: massiveChoice,
           }}
-          code={`import SolidJsSelect from "compact-select";
-import { choices } from "./data";
-import "./styles.css";
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
 
-export default function App() {
+const bigItemList = [items...];
+const Styling = () => {
   return (
-    <div class="Space">
+    <div class='example'>
       <SolidJsSelect
-        title="test"
-        choices={choices}
-        selected={["Nuala", "Andrew"]}
-        selectStyle={{
-          boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)"
-        }}
-        clearSelectionclass="icon-spin"
-        choiceStyle={{
-          textShadow: "2px 2px black"
-        }}
-        choiceSelectedIconclass="icon-blink"
+        title="example"
+        choices={bigItemList}
       />
     </div>
   );
-}`}
-          sandbox="https://codesandbox.io/s/custom-styles-dwlc5y"
+};
+
+export default Styling;`}
         />
       </div>
     ),

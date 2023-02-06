@@ -119,6 +119,10 @@ const SolidJsSelect = <T extends object | string>(
 
   onMount(() => {
     document.addEventListener('mouseup', functions().clickedAway, true);
+    const selected = getSelection(props);
+    if( selected.length === 1 ) {
+      functions().selectItem(selected[0]);
+    }
     functions().updateDisplayText();
   });
 

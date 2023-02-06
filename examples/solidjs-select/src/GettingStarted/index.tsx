@@ -6,9 +6,8 @@ const GettingStarted = () => {
     <div class='started'>
       <div>
         <h2 class='no-space-after'>Getting Started</h2>
-        <p>Follow the below instructions to inlcude SolidJs-Select in your SolidJs project. The theme dropdwon, in top-right hand side of the page, 
-           changes the styling varaibles used by the control.
-        </p>
+        <h3>Installation</h3>
+        <p>To use SolidJs-Select in your project, follow the below instructions to install the library.</p>
         <pre>
           Install SolidJs-Select by\n
           \n
@@ -16,7 +15,8 @@ const GettingStarted = () => {
           or\n
           yarn add solidjs-select\n
         </pre>
-        <p>Add the control to your project</p>
+        <h3>Adding the control</h3>
+        <p>To add the control, copy the below code and paste it into a file within your project.</p>
         <CodeView 
           code={`import SolidJsSelect from "solidjs-select";
  

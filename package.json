@@ -17,8 +17,5 @@
   },
   "devDependencies": {
     "prettier": "^2.5.1"
-  },
-  "dependencies": {
-    "solidjs-virtualisation": "0.0.21"
   }
 }
