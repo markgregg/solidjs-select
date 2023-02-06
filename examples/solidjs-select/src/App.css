@@ -17,21 +17,20 @@
 .header {
   display: inline-block;
   position: absolute;
-  max-width: 800px;
-  width: 100%;
+  width: 800px;
   z-index: 1;
 }
 
 .body {
   display: inline-block;
   position: absolute;
-  max-width: 800px;
-  width: 100%;
+  width: 800px;
   padding-top: 140px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  background-color: transparent;
+  background-color: var(--pageColor1);
+  color: var(--pageFont);
 }
 
 .heading {
@@ -92,10 +91,7 @@
 }
 
 .context {
-  font-weight: 400;
   width: 100%;
-  background-color: var(--pageColor1);
-  color: var(--pageFont);
 }
 
 .theme {
