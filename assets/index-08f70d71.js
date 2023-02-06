@@ -403,7 +403,7 @@ export default function App() {
       />
     </div>
   );
-}`,sandbox:"https://codesandbox.io/s/string-switch-0zf049"})),E})()},{name:"Promise Look-ups",demo:()=>(()=>{const E=q.cloneNode(!0);return D(E,P(i,{title:"Promise look-up",description:"If you can't access all avaiable options, then options can be provied by a promise.",props:{width:"300px",title:"Typeahead Look-up",typeAheadLookUp:AA},code:`import SolidJsSelect from "compact-select";
+}`,sandbox:"https://codesandbox.io/s/string-switch-0zf049"})),E})()},{name:"Promises",demo:()=>(()=>{const E=q.cloneNode(!0);return D(E,P(i,{title:"Promise look-up",description:"If you can't access all avaiable options, then options can be provied by a promise.",props:{width:"300px",title:"Typeahead Look-up",typeAheadLookUp:AA},code:`import SolidJsSelect from "compact-select";
 import { fetchItems } from "./data";
 import "./styles.css";
 
