@@ -21,7 +21,7 @@
   "dependencies": {
     "solid-icons": "^1.0.4",
     "solid-js": "^1.6.9",
-    "solidjs-select": "^0.4.2",
+    "solidjs-select": "^0.4.3",
     "solidjs-show-code": "^0.1.1",
     "solidjs-virtualisation": "^0.2.1"
   }

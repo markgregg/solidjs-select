@@ -483,7 +483,7 @@ export const createSolidJsSelectFunctions = <
               const index =
                 highlightedIndex() === -1 ||
                 highlightedIndex() >= visibleChoices().length - 10
-                  ? 0
+                  ? visibleChoices().length - 1
                   : highlightedIndex() + 10;
               functions.adjustHighlightedIndex(index);
             }
@@ -494,7 +494,7 @@ export const createSolidJsSelectFunctions = <
               const index =
               highlightedIndex() === -1 ||
               highlightedIndex() <= 10
-                  ? visibleChoices().length - 1
+                  ? 0
                   : highlightedIndex() - 10;
               functions.adjustHighlightedIndex(index);
             }
