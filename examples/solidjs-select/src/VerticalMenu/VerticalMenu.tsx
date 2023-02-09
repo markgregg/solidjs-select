@@ -13,7 +13,6 @@ const VerticalMenu: Component<VerticalMenuProps> = ({
   onSelect,
 }) => {
   const [active, setActive] = createSignal<string>(options[0]);
-  const [highlight, setHighlight] = createSignal<string>();
 
   return (
     <div class="vmenu">
@@ -21,15 +20,7 @@ const VerticalMenu: Component<VerticalMenuProps> = ({
       <ul class="vmenu-items">
         {options.map((option) => (
           <li
-            class="option"
-            style={{
-              'background-color':
-                highlight() === option || option === active()
-                  ? 'var(--pageColor3)'
-                  : 'var(--pageColor1)',
-            }}
-            onMouseEnter={() => setHighlight(option)}
-            onMouseLeave={() => setHighlight(undefined)}
+            class={option === active() ? "active-option" : "option"}
             onClick={() => {
               setActive(option);
               onSelect(option);

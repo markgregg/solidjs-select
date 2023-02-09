@@ -37,6 +37,18 @@
   padding-top: 1px;
   padding-bottom: 1px;
   padding-inline-start: 20px;
+  background-color: var(--pageColor1);
+}
+
+.option:hover {
+  background-color: var(--pageColor3);
+}
+
+.active-option {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-inline-start: 20px;
+  background-color: var(--pageColor3);
 }
 
 .vmenu-text {
