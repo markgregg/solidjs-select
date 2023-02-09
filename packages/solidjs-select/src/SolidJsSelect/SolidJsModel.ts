@@ -375,14 +375,15 @@ export const createSolidJsSelectFunctions = <
       }
       //if no maxium selections or number of selected items less than max, select the item
       if (
-        !props.maximumSelections ||
-        selected().length < props.maximumSelections
+        (!props.maximumSelections ||
+        selected().length < props.maximumSelections) 
+        && props.selectType !== 'switch'
       ) {
         selected().push(item);
         setSelected([...selected()]);
         functions.updateSelected();
         //if a max of 1 item then selected only this item
-      } else if (props.maximumSelections === 1) {
+      } else if (props.maximumSelections === 1 || props.selectType === 'switch') {
         setSelected([item]);
         functions.updateSelected();
       }
