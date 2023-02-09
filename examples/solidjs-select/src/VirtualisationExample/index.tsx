@@ -64,8 +64,8 @@ const VirtualisationExample: Component<VirtualisationExampleProps> = (
   return (
     <div class='main'>
       <p>SolidJs is fast, because rather than keeping a virtual DOM, it only updates elements in response to a reaction. 
-        In SolidJs-Select control, the options are rendered by a single reaction. This would typically cause SolidJs a lot of work.
-        I've overcome the issue by virtualising the options, so that only the visible items are rendered.
+        The SolidJs-Select control renders options in response to a single reaction. This would typically cause SolidJs a lot of work.
+        I've overcome the problem by virtualising the options, so only visible items are rendered.
       </p>
       <div class='settings'>
         <div class='columns'>
