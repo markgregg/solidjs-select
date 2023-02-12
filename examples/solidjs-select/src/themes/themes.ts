@@ -54,7 +54,7 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--pageColor1',
-        '#9dbbe0'
+        'white'
       );
       document.documentElement.style.setProperty('--pageColor2', '#4646B5');
       document.documentElement.style.setProperty('--pageColor3', '#6161e1');
@@ -189,7 +189,7 @@ export const applyTheme = (theme: string) => {
         '--solidjsSelectBorder', 
         '#EFD233 2px Solid'
       );
-      document.documentElement.style.setProperty('--pageColor1', '#FFFADB');
+      document.documentElement.style.setProperty('--pageColor1', 'white');
       document.documentElement.style.setProperty('--pageColor2', '#F7E575');
       document.documentElement.style.setProperty('--pageColor3', '#EFD233');
       document.documentElement.style.setProperty('--pageColor4', '#ddc73d');

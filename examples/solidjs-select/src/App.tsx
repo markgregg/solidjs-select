@@ -2,12 +2,11 @@ import SolidJsSelect from "solidjs-select";
 import GettingStarted from './GettingStarted';
 import Examples from './Examples';
 import Styling from './Styling';
-import VirtualisationExample from './VirtualisationExample';
 import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['Examples','Virtual Container', 'Getting Started', 'Styling'];
+const pages = ['Examples','Getting Started', 'Styling', 'More Demos'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
@@ -24,6 +23,14 @@ const App = () => {
     applyTheme(theme[0]);
   };
 
+  const openPage = (page: string) => {
+    if( page === 'More Demos') {
+      window.location.href = "https://markgregg.github.io/demo-home/"; 
+    } else {
+      setPage(page);
+    } 
+  }
+
   return (
     <div class="frame">
       <div class="page">
@@ -37,7 +44,7 @@ const App = () => {
           <div class="menu-bar">
             <div class="menu">
               {pages.map((pg) => (
-                <div class="menu-item" onClick={() => setPage(pg)}>
+                <div class="menu-item" onClick={() => openPage(pg)}>
                   {
                     ( pg === page()) 
                     ? <u><p class="menu-text">{pg}</p></u>
@@ -62,10 +69,11 @@ const App = () => {
         </div>
         <div class="body">
           <div class="context">
-            {(page() === 'Examples' && <Examples />) ||
+            {
+              (page() === 'Examples' && <Examples />) ||
               (page() === 'Getting Started' && <GettingStarted />) ||
-              (page() === 'Styling' && <Styling />) ||
-              (page() === 'Virtual Container' && <VirtualisationExample theme={themeName()}/>)}
+              (page() === 'Styling' && <Styling />)
+            }
           </div>
           <div
             class="footer"
