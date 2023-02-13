@@ -6,7 +6,7 @@ import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['Examples','Getting Started', 'Styling', 'More Demos'];
+const pages = ['Examples','Getting Started', 'Styling', 'Back To Demos'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
@@ -24,7 +24,7 @@ const App = () => {
   };
 
   const openPage = (page: string) => {
-    if( page === 'More Demos') {
+    if( page === 'Back To Demos') {
       window.location.href = "https://markgregg.github.io/demo-home/"; 
     } else {
       setPage(page);
