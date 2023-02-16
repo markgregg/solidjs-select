@@ -134,7 +134,7 @@ export const applyTheme = (theme: string) => {
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectFonHighlightColor',
-        'white'
+        'lightgray'
       );
       document.documentElement.style.setProperty(
         '--solidjsSelectDisabledFontColor',
@@ -381,6 +381,3 @@ export const applyTheme = (theme: string) => {
       break;
   }
 };
-
-
-
