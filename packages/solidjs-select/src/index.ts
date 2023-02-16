@@ -5,6 +5,7 @@ export type {
   ChoiceStyle,
   SelectProps,
   SelectStyle,
+  EdgeType,
   ToolTipProps,
   ToolTipStyle,
   DisplayProps,

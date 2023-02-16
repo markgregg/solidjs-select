@@ -17,53 +17,65 @@ const ToolTip = (props: ToolTipProps & ToolTipStyle) => {
         return {
           top: clientHeight ? `-${clientHeight+5}px` : '-120%',
           left: '0px',
-          "width": `${parentWidth ?? 80}px`
+          'justify-content': 'center'
         };
       case 'right':
         return {
           top: '0px',
           left: parentWidth ? `${parentWidth+5}px` : '110%',
-          "max-width": `${parentWidth ?? 80}px`
+          'justify-content': 'start'
         };
       case 'left':
         return {
           top: '0px',
-          left: clientWidth ? `-${clientWidth+5}px` :'-90px',
-          "max-width": `${parentWidth ?? 80}px`
+          left: parentWidth 
+            ? `-${parentWidth+4}px` 
+            : clientWidth 
+              ? `-${clientWidth+5}px` 
+              : '-100%',
+          'justify-content': 'end'
         };
       default:
         return {
           top: parentHeight ? `${parentHeight+5}px` : '120%',
           left: '0%',
-          "width": `${parentWidth ?? 80}px`
+          'justify-content': 'center'
         };
     }
   };
-  
+
   return (
     <div
-      ref={textSpan}
-      class={props.toolTipClassName}
       style={{
+        display: 'flex',
         position: 'absolute',
         'z-index': 999,
-        padding: '3px',
-        color: 'var(--solidjsSelectToolTipFontColor, black)',
-        'font-weight': 'var(--solidjsSelectToolTipFontWeight)',
-        'font-family': 'var(--solidjsSelectFontFamily)',
-        'font-size': 'var(--solidjsSelectToolTipFontSize, small)',
-        'font-style': 'var(--solidjsSelectToolTipFontStyle)',
-        'border-radius': '5px',
-        'text-align': 'var(--solidjsSelectToolTipTextAlign, center)',
-        border: 'var(--solidjsSelectToolTipBorder)',
-        'background-color':
-          'var(--solidjsSelectToolTipBackgroundColor, white)',
-        'background-image': 'var(--solidjsSelectToolTipBackgroundImage)',
-        ...props.toolTipStyle,
+        width: `${props.parentWidth}px`,
         ...position(props.toolTipPosition ?? 'below', props.parentWidth, props.parentHeight, height(), width()),
       }}
     >
-      {props.tip}
+      <div
+        ref={textSpan}
+        class={props.toolTipClassName}
+        style={{
+          padding: '3px',
+          "max-width": `${props.parentWidth ?? 80}px`,
+          color: 'var(--solidjsSelectToolTipFontColor, black)',
+          'font-weight': 'var(--solidjsSelectToolTipFontWeight)',
+          'font-family': 'var(--solidjsSelectFontFamily)',
+          'font-size': 'var(--solidjsSelectToolTipFontSize, small)',
+          'font-style': 'var(--solidjsSelectToolTipFontStyle)',
+          'border-radius': '5px',
+          'text-align': 'var(--solidjsSelectToolTipTextAlign, center)',
+          border: 'var(--solidjsSelectToolTipBorder)',
+          'background-color':
+            'var(--solidjsSelectToolTipBackgroundColor, white)',
+          'background-image': 'var(--solidjsSelectToolTipBackgroundImage)',
+          ...props.toolTipStyle,
+        }}
+      >
+        {props.tip}
+      </div>
     </div>
   );
 };

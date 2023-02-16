@@ -762,6 +762,87 @@ export default Styling;`}
     ),
   },
   {
+    name: 'Misc',
+    demo: () => (
+      <div class="demo">
+        <DemoItem
+          title="Flat edges"
+          description="Flat edges are the default type."
+          props={{
+            width: '400px',
+            title: 'Flat edges',
+            choices: choices,
+          }}
+         code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+        <DemoItem
+          title="Round edges"
+          description="Round edges are an alternative if you want a softer feel."
+          props={{
+            width: '400px',
+            title: 'Round edges',
+            choices: choices,
+            edgeType: 'Round'
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectionType='Border'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+        <DemoItem
+          title="No floating title"
+          description="The floating title can be removed."
+          props={{
+            width: '400px',
+            title: 'No Floating title',
+            choices: choices,
+            hideTitle: true,
+            selected: [choices[0]]
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        hideTitle
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+      </div>
+    ),
+  },
+  {
     name: 'Dropdown lists',
     demo: () => (
       <div class="demo">
@@ -819,6 +900,97 @@ const Styling = () => {
 
 export default Styling;`}
         />
+        <DemoItem
+          title="Rounded dropdown list"
+          description="A rounded dropdown box."
+          props={{
+            width: '400px',
+            title: 'Rounded Dropdown',
+            choices: choices,
+            maximumSelections: 1,
+            edgeType: 'Round',
+            selectType: 'dropdown',
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        maximumSelections={1}
+        edgeType='Round'
+        selectType='dropdown'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+        <DemoItem
+          title="Solid rounded dropdown list"
+          description="A solid rounded dropdown box."
+          props={{
+            width: '400px',
+            title: 'Solid Rounded Dropdown',
+            choices: choices,
+            maximumSelections: 1,
+            edgeType: 'Round',
+            solidBox: true,
+            selectType: 'dropdown',
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        maximumSelections={1}
+        edgeType='Round'
+        solidBox
+        selectType='dropdown'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+      <DemoItem
+          title="Rounded dropdown list with solid ends"
+          description="A solid rounded dropdown box."
+          props={{
+            width: '400px',
+            title: 'Solid End Rounded Dropdown',
+            choices: choices,
+            maximumSelections: 1,
+            edgeType: 'Round',
+            opaqueEnds: true,
+            selectType: 'dropdown',
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        maximumSelections={1}
+        edgeType='Round'
+        opaqueEnds
+        selectType='dropdown'
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
       </div>
     ),
   },
@@ -846,6 +1018,68 @@ const Styling = () => {
         title="example"
         choices={['choice1','choice2','choice3']}
         selectType='switch'
+        minimumSelections={1}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+        <DemoItem
+          title="Round switch"
+          description="A switch with rounded corners."
+          props={{
+            width: '120px',
+            hideTitle: true,
+            title: 'Round Switch',
+            choices: choices,
+            selectType: 'switch',
+            edgeType: 'Round',
+            minimumSelections: 1,
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectType='switch'
+        edgeType='Round'
+        minimumSelections={1}
+      />
+    </div>
+  );
+};
+
+export default Styling;`}
+        />
+        <DemoItem
+          title="Solid round switch"
+          description="A sold switch with rounded corners."
+          props={{
+            width: '120px',
+            hideTitle: true,
+            title: 'Solid Round Switch',
+            choices: choices,
+            selectType: 'switch',
+            edgeType: 'Round',
+            solidBox: true,
+            minimumSelections: 1,
+          }}
+          code={`import SolidJsSelect, { Choice } from "solidjs-select";
+
+const Styling = () => {
+  return (
+    <div class='example'>
+      <SolidJsSelect
+        title="example"
+        choices={['choice1','choice2','choice3']}
+        selectType='switch'
+        edgeType='Round',
+        solidBox
         minimumSelections={1}
       />
     </div>

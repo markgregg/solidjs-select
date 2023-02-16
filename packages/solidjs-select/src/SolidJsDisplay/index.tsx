@@ -29,7 +29,6 @@ const SolidJsDisplay = <T extends object | string>(
         'margin-left': '3px',
         'margin-block-start': '0px',
         'margin-block-end': '0px',
-        '-moz-user-select': 'none',
         '-webkit-user-select': 'none',
         '-ms-user-select': 'none',
         'user-select': 'none',

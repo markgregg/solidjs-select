@@ -7,7 +7,6 @@
   border-top-left-radius: 8px;
   border-top: 3px solid var(--pageColor2);
   border-left: 3px solid var(--pageColor2);
-  background-color: var(--pageColor1);
   color: var(--pageFont);
   position: absolute;
   z-index: 1;
@@ -36,18 +35,17 @@
   padding-top: 1px;
   padding-bottom: 1px;
   padding-inline-start: 20px;
-  background-color: var(--pageColor1);
 }
 
 .option:hover {
-  background-color: var(--pageColor3);
+  background-color: var(--pageColor5);
 }
 
 .active-option {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-inline-start: 20px;
-  background-color: var(--pageColor3);
+  background-color: var(--pageColor5);
 }
 
 .vmenu-text {

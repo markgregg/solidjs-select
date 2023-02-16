@@ -4,7 +4,7 @@ export interface SelectProps<T extends Choice | object | string> {
   title: string; //select title and key for cache
   maximumSelections?: number; //min items that can be selected
   minimumSelections?: number; //max items that can be selected
-  selectType?: 'standard' | 'dropdown' | 'switch'; //how the control behaves
+  selectType?: 'switch' | 'standard' | 'dropdown'; //how the control behaves
   choices?: T[]; //available static choices
   selected?: T[] | T; //currently selected items
   itemValue?: (item: T) => string; //if using a complex class the key value

@@ -8,7 +8,10 @@ import { DisplayStyle } from './displayStyle';
 import { ToolTipProps } from './toolTipProps';
 import { ToolTipStyle } from './toolTipStyle';
 
+export type EdgeType = 'Flat' | 'Round';
+
 export interface SelectStyle {
+  edgeType?: EdgeType;
   toolTipComponent?: (props: ToolTipProps & ToolTipStyle) => Element;
   choiceComponent?: <T extends object | string>(
     props: ChoiceProps<T> & ChoiceStyle
@@ -45,4 +48,7 @@ export interface SelectStyle {
   width?: CSS.Property.Width;
   minWidth?: CSS.Property.MinWidth;
   maxWidth?: CSS.Property.MaxWidth;
+  solidBox?: boolean;
+  hideDivider?:  boolean;
+  opaqueEnds?: boolean;
 }

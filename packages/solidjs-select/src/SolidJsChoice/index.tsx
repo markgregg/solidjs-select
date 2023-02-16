@@ -47,7 +47,7 @@ const SolidJsChoice = <T extends object | string>(
       : props.isSelected && props.selectionType === 'Background'
       ? {
           'background-color':
-            'var(--solidjsSelectSelectedBackgroundBackgroundColor,Gainsboro)',
+            'var(--solidjsSelectSelectedChoiceBackgroundColor,Gainsboro)',
           'border-radius': '5px',
         }
       : props.choiceDisabled

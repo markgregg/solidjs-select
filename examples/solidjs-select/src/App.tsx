@@ -31,9 +31,12 @@ const App = () => {
     } 
   }
 
+  console.log(themeName())
   return (
     <div class="frame">
-      <div class="page">
+      <div 
+        class="page"
+      >
         <div class='header'>
           <div class="heading">
             <h1 class="title">SolidJs-Select</h1>
@@ -62,12 +65,22 @@ const App = () => {
                 choices={themes}
                 selected={themeName()}
                 onChange={setTheme}
+                hideDivider
               />
             </div>
           </div>
 
         </div>
-        <div class="body">
+        <div 
+          class={ "body" + (themeName()===Themes.Dark 
+            ? " dark"
+            : themeName()===Themes.Light
+              ? " light"
+              : themeName()===Themes.Blue
+              ? " blue"
+              : " plain")
+          }
+        >
           <div class="context">
             {
               (page() === 'Examples' && <Examples />) ||
@@ -75,13 +88,7 @@ const App = () => {
               (page() === 'Styling' && <Styling />)
             }
           </div>
-          <div
-            class="footer"
-            style={{
-              'background-color': 'var(--pageColor2)',
-              color: 'var(--solidjsSelectFontColor)',
-            }}
-          >
+          <div class="footer">
             <p>Created by Mark Gregg</p>
           </div>
         </div>

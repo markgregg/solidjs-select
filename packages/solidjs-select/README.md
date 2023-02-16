@@ -43,7 +43,6 @@ A simple string list
 - --solidjsSelectHighlightedFontColor
 - --solidjsSelectHighlightedBackgroundColor
 - --solidjsSelectHighlightedBackgroundImage
-- --solidjsSelectSelectedBackgroundBackgroundColor
 - --solidjsSelectSelectedFontColor
 - --solidjsSelectSelectedBackgroundColor
 - --solidjsSelectSelectedBackgroundImage
