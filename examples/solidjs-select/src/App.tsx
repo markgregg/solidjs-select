@@ -6,7 +6,7 @@ import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['Examples','Getting Started', 'Styling', 'Back To Demos'];
+const pages = ['Examples','Get Started', 'Style', 'Demos'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
@@ -24,7 +24,7 @@ const App = () => {
   };
 
   const openPage = (page: string) => {
-    if( page === 'Back To Demos') {
+    if( page === 'Demos') {
       window.location.href = "https://markgregg.github.io/demo-home/"; 
     } else {
       setPage(page);
@@ -35,26 +35,35 @@ const App = () => {
   return (
     <div class="frame">
       <div 
-        class="page"
+        class={ "page" + (themeName()===Themes.Dark 
+          ? " dark"
+          : themeName()===Themes.Light
+            ? " light"
+            : themeName()===Themes.Blue
+            ? " blue"
+            : " plain")
+        }
       >
         <div class='header'>
           <div class="heading">
-            <h1 class="title">SolidJs-Select</h1>
+            <h2 class="title">SolidJs-Select</h2>
             <p class="statement">
-              A compact, highly functional select control for SolidJs
+              A compact, highly functional select control.
             </p>
           </div>
           <div class="menu-bar">
-            <div class="menu">
-              {pages.map((pg) => (
-                <div class="menu-item" onClick={() => openPage(pg)}>
-                  {
-                    ( pg === page()) 
-                    ? <u><p class="menu-text">{pg}</p></u>
-                    : <p class="menu-text">{pg}</p> 
-                  }
-                </div>
-              ))}
+            <div class="menu-container">
+              <div class="menu">
+                {pages.map((pg) => (
+                  <div class="menu-item" onClick={() => openPage(pg)}>
+                    {
+                      ( pg === page()) 
+                      ? <u><p class="menu-text">{pg}</p></u>
+                      : <p class="menu-text">{pg}</p> 
+                    }
+                  </div>
+                ))}
+              </div>
             </div>
             <div class="theme">
               <SolidJsSelect
@@ -71,25 +80,13 @@ const App = () => {
           </div>
 
         </div>
-        <div 
-          class={ "body" + (themeName()===Themes.Dark 
-            ? " dark"
-            : themeName()===Themes.Light
-              ? " light"
-              : themeName()===Themes.Blue
-              ? " blue"
-              : " plain")
-          }
-        >
+        <div class="body">
           <div class="context">
             {
               (page() === 'Examples' && <Examples />) ||
-              (page() === 'Getting Started' && <GettingStarted />) ||
-              (page() === 'Styling' && <Styling />)
+              (page() === 'Get Started' && <GettingStarted />) ||
+              (page() === 'Style' && <Styling />)
             }
-          </div>
-          <div class="footer">
-            <p>Created by Mark Gregg</p>
           </div>
         </div>
       </div>

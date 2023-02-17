@@ -179,7 +179,7 @@ export const categories: Category[] = [
           title="String binding"
           description="The below example demonstrates binding to an array of strings."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'String Bind',
             choices: choices,
           }}
@@ -202,7 +202,7 @@ export default Styling;`}
           title="Object binding"
           description="Binding to an array of JSON objects is possible, but requires itemValue and itemText properties to be supplied.."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Object Bind',
             choices: objectChoices,
             itemValue: (item) => item.name,
@@ -235,7 +235,7 @@ export default Styling;`}
           title="Typed object binding"
           description="If the objects support the choice interface, then the itemValue and itemText properties are not required."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Typed Bind',
             choices: typedObjectChoices,
           }}
@@ -270,7 +270,7 @@ export default Styling;`}
           title="Single value"
           description="The below example demonstrates a control where the user has to select at least 1 item."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'One item',
             choices: choices,
             maximumSelections: 1,
@@ -297,7 +297,7 @@ export default Styling;`}
           title="Single or none"
           description="It is possible to configure the control to allow the user to select 1 or no items."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'One Or None',
             choices: objectChoices,
             maximumSelections: 1,
@@ -324,7 +324,7 @@ export default Styling;`}
           title="Single on change"
           description="The below example demonstrates listening to the onChange event for a single selection control."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Single Change',
             choices: choices,
             maximumSelections: 1,
@@ -360,7 +360,7 @@ export default Styling;`}
           title="Multiple selection"
           description="The below example demonstrates a contorl configured for ultimate number of selections."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Multiple',
             choices: choices,
           }}
@@ -383,7 +383,7 @@ export default Styling;`}
           title="Limited selection"
           description="If there is a requirement to limit the number of selections that is possible. In this case the max is 3."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Three Items',
             choices: objectChoices,
             maximumSelections: 3,
@@ -410,7 +410,7 @@ export default Styling;`}
           title="Multiple on change"
           description="The below example demonstrates listening to the onChange event when using mutiple selection control."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Multiple Change',
             choices: choices,
           }}
@@ -443,7 +443,7 @@ export default Styling;`}
           description="Font size is variable and the control can potentially handle any size. It is also possible to change the tooltip and title font size, but that hasn't been done for these examples."
           fontSize="x-large"
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Extra Large Font',
             choices: choices,
           }}
@@ -468,7 +468,7 @@ export default Styling;`}
           description="Some sizes are better than others."
           fontSize="large"
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Large Font',
             choices: choices
           }}
@@ -493,7 +493,7 @@ export default Styling;`}
           description="Meduium font"
           fontSize="medium"
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Meduium Font',
             choices: choices
           }}
@@ -518,7 +518,7 @@ export default Styling;`}
           description="Small font"
           fontSize="small"
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Small Font',
             choices: choices,
           }}
@@ -543,7 +543,7 @@ export default Styling;`}
           description="Very small font"
           fontSize="x-small"
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Very small font',
             choices: choices,
           }}
@@ -577,7 +577,7 @@ export default Styling;`}
           title="Tooltip default"
           description="By default the tooltip is place beneath the control."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Tooltip Default',
             choices: choices,
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna']
@@ -601,7 +601,7 @@ export default Styling;`}
           title="Tooltip above"
           description="It is possible to place the tooltip above."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Tooltip Above',
             choices: choices,
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
@@ -627,7 +627,7 @@ export default Styling;`}
           title="Tooltip left"
           description="Or to the left of the control."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Tooltip Left',
             choices: choices,
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
@@ -653,7 +653,7 @@ export default Styling;`}
           title="Tooltip right"
           description="Or to the right of the control."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Tooltip Right',
             choices: choices,
             selected: ['Nuala', 'Sarah', 'Jane', 'Dianna'],
@@ -689,7 +689,7 @@ export default Styling;`}
           title="Icon style"
           description="There are a few options fot the selection indication. The default is a tick icon, which can be changed."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Icon Style',
             choices: choices,
           }}
@@ -712,7 +712,7 @@ export default Styling;`}
           title="Border style"
           description="If a change of icon isn't what you are after, you can use a border indicator."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Border Style',
             selectionType: 'Border',
             choices: choices,
@@ -737,7 +737,7 @@ export default Styling;`}
           title="Background Style"
           description="Or the options background colour."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Background Style',
             selectionType: 'Background',
             choices: choices,
@@ -769,7 +769,7 @@ export default Styling;`}
           title="Flat edges"
           description="Flat edges are the default type."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Flat edges',
             choices: choices,
           }}
@@ -792,7 +792,7 @@ export default Styling;`}
           title="Round edges"
           description="Round edges are an alternative if you want a softer feel."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Round edges',
             choices: choices,
             edgeType: 'Round'
@@ -817,7 +817,7 @@ export default Styling;`}
           title="No floating title"
           description="The floating title can be removed."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'No Floating title',
             choices: choices,
             hideTitle: true,
@@ -850,7 +850,7 @@ export default Styling;`}
           title="Single dropdown list"
           description="As well as combo controls, simple dropdowns are available."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Dropdown',
             choices: choices,
             maximumSelections: 1,
@@ -877,7 +877,7 @@ export default Styling;`}
           title="Multiple value dropdown"
           description="It is also possible to have multiple value dropdowns."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Values Dropdown',
             choices: objectChoices,
             selectType: 'dropdown',
@@ -904,7 +904,7 @@ export default Styling;`}
           title="Rounded dropdown list"
           description="A rounded dropdown box."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Rounded Dropdown',
             choices: choices,
             maximumSelections: 1,
@@ -933,7 +933,7 @@ export default Styling;`}
           title="Solid rounded dropdown list"
           description="A solid rounded dropdown box."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Solid Rounded Dropdown',
             choices: choices,
             maximumSelections: 1,
@@ -964,7 +964,7 @@ export default Styling;`}
           title="Rounded dropdown list with solid ends"
           description="A solid rounded dropdown box."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Solid End Rounded Dropdown',
             choices: choices,
             maximumSelections: 1,
@@ -1099,7 +1099,7 @@ export default Styling;`}
           title="Promise look-up"
           description="If you can't access all avaiable options, then options can be provied by a promise."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Typeahead Look-up',
             typeAheadLookUp: fetchItems,
           }}
@@ -1122,7 +1122,7 @@ export default Styling;`}
           title="Cached look-up"
           description="If the source of the options is not performant, then there is the option to cache."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Cached Look-up',
             typeAheadLookUp: slowFetchObjects,
             itemValue: (item) => item.name,
@@ -1149,7 +1149,7 @@ export default Styling;`}
           title="Expiring Cached string look-up"
           description="To avoid a build up of memory, the cached items can be given a time to live."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Expiring Cache',
             typeAheadLookUp: slowFetchItems,
             cacheLookUp: true,
@@ -1185,7 +1185,7 @@ export default Styling;`}
           title="Disbaled Control"
           description="Controls can be completely disabled."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Disabled',
             choices: choices,
             selected: ['Sarah', 'Dianna'],
@@ -1211,7 +1211,7 @@ export default Styling;`}
           title="Disbaled items"
           description="Or if using an array of objects that implement the Choice interface, indivual items can be disabled."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Disabled Items',
             choices: typedObjectChoices,
           }}
@@ -1246,7 +1246,7 @@ export default Styling;`}
           title="Paste items 1"
           description="It's possible to paste a comma delimited list of strings into the control."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'String paste',
             typeAheadLookUp: fetchItems,
             itemSearch: searchItems,
@@ -1278,7 +1278,7 @@ export default Styling;`}
           title="Pasting for typed objects"
           description="The paste option also works for arrays of objects."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Object paste',
             typeAheadLookUp: fetchTyped,
             itemSearch: searchTyped,
@@ -1317,7 +1317,7 @@ export default Styling;`}
           title="Virtualised"
           description="The only limit to the number of options is memory. The control uses virtualisation, so most options are not rendered until required."
           props={{
-            width: '400px',
+            width: '280px',
             title: 'Style',
             choices: massiveChoice,
           }}
