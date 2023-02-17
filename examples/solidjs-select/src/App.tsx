@@ -89,6 +89,17 @@ const App = () => {
             }
           </div>
         </div>
+        <div class="footer-container">
+          <div
+            class="footer"
+            style={{
+              'background-color': 'var(--pageColor2)',
+              color: 'var(--solidjsSelectFontColor)',
+            }}
+          >
+            <p class="no-padding">Created by Mark Gregg</p>
+          </div>
+        </div>
       </div>
     </div>
   );

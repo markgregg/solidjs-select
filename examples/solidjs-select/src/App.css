@@ -134,4 +134,25 @@
   font-weight: bold;
 }
 
+.footer-container {
+  width: 94%;
+  margin-bottom: 10px;
+}
 
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 6px 6px var(--pageColor4);
+  padding: 15px;
+  background-image: linear-gradient(to right, var(--pageColor3), var(--pageColor2));
+  color: 'var(--solidjsSelectFontColor)';
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-container {
+    height: 0px;
+    overflow: hidden;
+  }
+}
