@@ -1,5 +1,5 @@
 import { createSignal, JSX } from 'solid-js';
-import VerticalMenu from '../VerticalMenu/VerticalMenu';
+import VerticalMenu from '../VerticalMenu';
 import { categories } from './Demos';
 import './Examples.css';
 

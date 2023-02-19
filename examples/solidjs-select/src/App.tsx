@@ -6,7 +6,7 @@ import './App.css';
 import { applyTheme, themes, Themes } from './themes/themes';
 import { createSignal, onMount } from 'solid-js';
 
-const pages = ['Examples','Get Started', 'Style', 'Demos'];
+const pages = ['Examples','Get Started', 'Style', 'More Demos'];
 
 const App = () => {
   const [themeName, setThemeName] = createSignal<string>(
@@ -24,14 +24,13 @@ const App = () => {
   };
 
   const openPage = (page: string) => {
-    if( page === 'Demos') {
+    if( page === 'More Demos') {
       window.location.href = "https://markgregg.github.io/demo-home/"; 
     } else {
       setPage(page);
     } 
   }
 
-  console.log(themeName())
   return (
     <div class="frame">
       <div 
@@ -90,13 +89,7 @@ const App = () => {
           </div>
         </div>
         <div class="footer-container">
-          <div
-            class="footer"
-            style={{
-              'background-color': 'var(--pageColor2)',
-              color: 'var(--solidjsSelectFontColor)',
-            }}
-          >
+          <div class="footer">
             <p class="no-padding">Created by Mark Gregg</p>
           </div>
         </div>
