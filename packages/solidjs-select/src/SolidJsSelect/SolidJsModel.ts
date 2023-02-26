@@ -270,6 +270,7 @@ export const createSolidJsSelectFunctions = <
     showList: () => {
       setLookedUpChoices(undefined);
       setInputText('');
+      setHighlightedIndex(-1);
       functions.updateVisibleChoices();
       setShowChoices(true);
       functions.hideToolTip();

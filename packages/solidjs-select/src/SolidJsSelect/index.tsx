@@ -127,6 +127,10 @@ const SolidJsSelect = <T extends object | string>(
   const [mainResizeObserver,setMainResizeObserver] = createSignal<ResizeObserver>();
   const [outerResizeObserver,setOuterResizeObserver] = createSignal<ResizeObserver>();
 
+  const isMobile = (): boolean => {
+    return window.matchMedia("only screen and (max-width: 600px)").matches;
+  }
+
   onMount(() => {
     const mainDiv = mainDivRef();
     if( mainDiv ) {
@@ -532,7 +536,7 @@ const SolidJsSelect = <T extends object | string>(
                   ...dropdownStateStyle(props.disabled, props.dropdownIconDisabledStyle, props.dropdownIconStyle)
                 }}
               > {
-                  !props.hideDivider && <span style={{
+                  !isMobile() && !props.hideDivider && <span style={{
                       'border-left': 'var(--solidjsSelectDropDownBorderColor,var(--solidjsSelectFontColor, lightgray)) 1px solid',
                       'height': (props.solidBox || props.opaqueEnds) && props.selectType === 'dropdown' ?  '100%' : '60%',
                       'position': 'absolute',
