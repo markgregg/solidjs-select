@@ -5,6 +5,7 @@
   border-top-left-radius: 8px;
   border-top: 3px solid var(--pageColor2);
   border-left: 3px solid var(--pageColor2);
+  z-index: 1;
 }
 
 .vmenu {
