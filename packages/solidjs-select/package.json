@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "solid-icons": "^1.0.4",
-    "solidjs-virtualisation": "^0.3.4"
+    "solidjs-virtualisation": "^0.4.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
