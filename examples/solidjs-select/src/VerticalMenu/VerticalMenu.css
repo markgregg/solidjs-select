@@ -37,6 +37,7 @@
     height: min-content;
     border-top: none;
     border-left: none;
+    z-index: unset;
   }
 
   .vmenu {
